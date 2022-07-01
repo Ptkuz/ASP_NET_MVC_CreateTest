@@ -1,0 +1,17 @@
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_DAL.deps.json
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_DAL.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_DAL.pdb
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_Interfaces.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_Interfaces.pdb
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.csproj.AssemblyReference.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.AssemblyInfoInputs.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.AssemblyInfo.cs
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.csproj.CoreCompileInputs.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.csproj.CopyComplete
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\refint\Web_Test_II_DAL.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.pdb
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\ref\Web_Test_II_DAL.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\bin\Debug\net6.0\Web_Test_II_DAL.runtimeconfig.json
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_DAL\obj\Debug\net6.0\Web_Test_II_DAL.genruntimeconfig.cache

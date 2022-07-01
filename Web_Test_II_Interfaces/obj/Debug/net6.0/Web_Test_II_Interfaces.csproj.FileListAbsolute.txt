@@ -1,0 +1,12 @@
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\bin\Debug\net6.0\Web_Test_II_Interfaces.deps.json
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\bin\Debug\net6.0\Web_Test_II_Interfaces.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\bin\Debug\net6.0\Web_Test_II_Interfaces.pdb
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.csproj.AssemblyReference.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.AssemblyInfoInputs.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.AssemblyInfo.cs
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\refint\Web_Test_II_Interfaces.dll
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\Web_Test_II_Interfaces.pdb
+C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II_Interfaces\obj\Debug\net6.0\ref\Web_Test_II_Interfaces.dll
