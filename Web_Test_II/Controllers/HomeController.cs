@@ -34,7 +34,19 @@ namespace Web_Test_II.Controllers
 
         [HttpGet]
         public IActionResult CreateTest() 
-            => View();
+        {
+            return View();  
+        }
+
+        [HttpPost]
+        public IActionResult CreateTest(QuestionsAndAnswers model) 
+        {
+
+            
+            
+            return View();
+        }
+
 
         [HttpGet]
         public IActionResult ViewTests()
