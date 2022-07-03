@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using Web_Test_II_DAL.Entityes;
 
-namespace Web_Test_II.Models
+namespace Web_Test_II.Models.ViewModels
 {
-    public class QuestionsModel
+    public class CreateQuestionsViewModel
     {
         [DisplayName("Название теста")]
         public Test Test { get; set; }
@@ -11,9 +11,9 @@ namespace Web_Test_II.Models
         [DisplayName("Список вопросов")]
         public List<string> Questions { get; set; }
 
-        public QuestionsModel() 
+        public CreateQuestionsViewModel()
         {
-           
+
         }
     }
 }

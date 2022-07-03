@@ -1,5 +1,88 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using Web_Test_II.Models.ViewModels
+@model CreateAnswersViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{  
+ViewBag.Title = "Добавление ответа к вопросу";
+var ID = ViewBag.ID;
 }
+
+<div class="text-center">
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <h2 class="display-4">Добавление ответов к вопросу</h2>     
+
+        <h1 class="display-4">@Html.DisplayNameFor(m => m.Answers)</h1>
+        <div class="row">
+            <div class="col-3">
+                
+            </div>
+            <div class="col-9">
+                <input type="button" class="btn btn-primary" value="Добавить ответ" onclick="newField()"/>
+                <ul id="answers" class="navbar-nav flex-grow-1">
+                        <li class="nav-item" >   
+                            
+                        </li>
+                        <li class="nav-item" id="isAnswer">   
+                            
+                        </li>
+                        </ul>
+
+<input type="submit" class="btn btn-success" value="Сохранить"/>
+            </div>
+             @*<div id="IsAnswers" class="col-9"></div>*@
+            
+        </div>
+        
+    }
+</div>
+
+<script>
+var array = ["Не правильный", "Правильный"];
+
+
+function newField() {
+    // определяем контейнер для хранения полей с вопросами
+    let containerA = document.getElementById("answers"); 
+    let containerB = document.getElementById("isAnswer");
+
+    // получаем текущее количество input (полей для вопросов)
+    let fieldCountA = containerA.getElementsByTagName("input").length;
+    // увеличиваем Id для нового поля
+    let nextFieldIdA = fieldCountA + 1;
+
+    // здесь добавляем элемент, который будет хранить input (в моем случае, у вас может быть по другому или вообще не быть его)
+    let divAnswer = document.createElement("li");
+        
+
+        let divIsAnswer = document.createElement("li");
+       
+
+    // создаем новое поле с новым id, name ДОЛЖЕН СОВПАДАТЬ С ИМЕНЕМ ПОЛЯ В МОДЕЛИ!!!
+    let fieldA = document.createElement("input");
+        fieldA.setAttribute("class", "form-control");
+        fieldA.setAttribute("id", "Answers[" + nextFieldIdA + "]");
+        fieldA.setAttribute("name", "Answers");
+        fieldA.setAttribute("type", "text");
+        fieldA.setAttribute("placeholder", "Введите текст ответа");
+
+
+         let fieldB = document.createElement("select");
+         fieldB.setAttribute("class", "form-control");
+        fieldB.setAttribute("id", "IsAnswer[" + nextFieldIdA + "]");
+        fieldB.setAttribute("name", "IsAnswer");
+
+    for (var i = 0; i < array.length; i++) 
+    {
+        var option = document.createElement("option");
+        option.value = array[i];
+        option.text = array[i];
+        fieldB.appendChild(option);
+    }
+
+
+    // добавляем поле в <div class="form-group"></div>
+    divAnswer.appendChild(fieldA);
+     divIsAnswer.appendChild(fieldB);
+    containerA.appendChild(divAnswer);
+    containerA.appendChild(divIsAnswer);
+}</script>

@@ -19,6 +19,10 @@ namespace Web_Test_II.Controllers
         private readonly IRepository<Test> _testRepository;
 
 
+        // Для хранения вопроса
+        private Question question;
+
+
         public HomeController(
             ILogger<HomeController> logger,
             IRepository<Answer> answerRepository,
@@ -52,11 +56,12 @@ namespace Web_Test_II.Controllers
         [HttpGet]
         public IActionResult CreateTest()
         {
+            
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTest(QuestionsModel model)
+        public async Task<IActionResult> CreateTest(CreateQuestionsViewModel model)
         {
             Test test = new Test();
             List<Question> questions = new List<Question>();
@@ -88,10 +93,27 @@ namespace Web_Test_II.Controllers
         [HttpGet]
         public async Task<IActionResult> AddAnswers(int id) 
         {
-            var question = _questionRepository.Get(id);
+            question = _questionRepository.Get(id);
             if (question != null)
-                return View(question);
+                return View();
             return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddAnswers(CreateAnswersViewModel model, int id) 
+        { 
+            var question = _questionRepository.Get(id);
+            List<Answer> answers = new List<Answer>();
+            for (int i = 0;i<model.Answers.Count;i++) 
+            {
+                string nameAnswer = model.Answers[i];
+                string isAnswer = model.IsAnswer[i];
+                var answer = new Answer() { Name = nameAnswer, IsAnswer = isAnswer == "Правильный" ? true : false, Question = question };
+                answers.Add(answer);
+            }
+            foreach (Answer answer in answers)
+                await _answerRepository.AddAsync(answer);
+            return RedirectToAction("ViewQuestions", "Home");
+
         }
 
 
