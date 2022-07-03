@@ -10,9 +10,12 @@ namespace Web_Test_II_Interfaces
     {
         IQueryable<T> Items { get; }
         T Get(int id);
+        T GetLast();
+        Task<IQueryable<T>> GetQuestionsInTest(int idTest, CancellationToken Cancel = default);
         Task<T> GetAsync(int id, CancellationToken Cancel = default);
         Task<T> AddAsync(T item, CancellationToken Cancel = default);
         Task UpdateAsync(T item, CancellationToken Cancel = default);
         Task RemoveAsync(int id, CancellationToken Cancel = default);
+        Task SaveChangesAsync();
     }
 }

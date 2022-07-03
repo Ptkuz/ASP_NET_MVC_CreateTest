@@ -1,0 +1,36 @@
+﻿@using Web_Test_II_DAL.Entityes;
+@using Web_Test_II.Models.ViewModels;
+@model QuestionsViewModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Web_Test_II
+
+@{
+    ViewBag.Title = "Редактирование ответов на вопросы";
+}
+
+<div class="text-center">
+
+        <h2 class="display-4">Добавление ответов к вопросам теста</h2>  
+
+        <table class="table">
+            <tr>
+                <th>
+                    <a>Вопрос</a>
+                </th>
+                <th>
+                    <a>Добавить ответы</a>
+                </th>
+            </tr>
+            @foreach(var item in Model.Questions)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td><a asp-action="AddAnswers" asp-controller="Home" asp-route-id="@item.Id">Добавить ответы</a></td>
+                </tr>           
+        }
+        </table>
+        
+
+    
+</div>

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<WebTestDB>(options => options.UseSqlServer(connection), ServiceLifetime.Scoped);
+builder.Services.AddDbContext<WebTestDB>(options => options.UseSqlServer(connection), ServiceLifetime.Transient);
 builder.Services.AddTransient<DbInitializer>();
 builder.Services.AddRepositoriesInDB();
 builder.Services.AddRazorPages();

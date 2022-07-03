@@ -2,6 +2,7 @@
 using Web_Test_II_DAL.Entityes.Base;
 using Web_Test_II_Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Web_Test_II_DAL.Entityes;
 
 namespace Web_Test_II_DAL
 {
@@ -9,6 +10,7 @@ namespace Web_Test_II_DAL
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _entities;
+        private readonly DbSet<Question> questions;
 
         private bool AutoSaveChanges { get; set; } = true;
 
@@ -16,9 +18,11 @@ namespace Web_Test_II_DAL
         {
             _context = db;
             _entities = db.Set<T>();
+            questions = db.Set<Question>();
         }
 
         public virtual IQueryable<T> Items => _entities;
+        public virtual IQueryable<Question> Questions => questions;
 
         public T Get(int id)=>
             Items.SingleOrDefault(item => item.Id == id);
@@ -26,6 +30,17 @@ namespace Web_Test_II_DAL
 
         public async Task<T> GetAsync(int id, CancellationToken Cancel = default) =>
             await Items.SingleOrDefaultAsync(item => item.Id == id, Cancel).ConfigureAwait(false);
+
+        public T GetLast() =>
+             Items.ToList().Last();
+
+        public async Task<IQueryable<T>> GetQuestionsInTest(int idTest, CancellationToken Cancel = default) 
+        {
+            var items = await Questions.Where(item => item.Test.Id == idTest).ToListAsync();
+            return (IQueryable<T>)items.AsQueryable();
+
+        }
+
 
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
@@ -51,5 +66,9 @@ namespace Web_Test_II_DAL
             if (AutoSaveChanges)
                 await _context.SaveChangesAsync(Cancel);
         }
-    }
+
+        public async Task SaveChangesAsync()=>
+            await _context.SaveChangesAsync().ConfigureAwait(false);
+
+	}
 }
