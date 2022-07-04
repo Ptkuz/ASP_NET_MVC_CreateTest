@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Web_Test_II.Models;
-using Web_Test_II_DAL;
+using Web_Test_II_DAL.Context;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
 using Web_Test_II.Models.ViewModels;
@@ -19,8 +19,7 @@ namespace Web_Test_II.Controllers
         private readonly IRepository<Test> _testRepository;
 
 
-        // Для хранения вопроса
-        private Question question;
+
 
 
         public HomeController(
@@ -56,12 +55,12 @@ namespace Web_Test_II.Controllers
         [HttpGet]
         public IActionResult CreateTest()
         {
-            
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTest(CreateQuestionsViewModel model)
+        public async Task<IActionResult> CreateTest(CreateTestViewModel model)
         {
             Test test = new Test();
             List<Question> questions = new List<Question>();
@@ -81,29 +80,51 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ViewQuestions() 
+        public async Task<IActionResult> ViewTests()
         {
+            var allTests = _testRepository.Items;
+            TestViewModel model = new TestViewModel(allTests);
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewQuestions(int id)
+        {
+
+            ViewBag.Id = id; // Передача id теста в представление
+
+            var findTest = await _testRepository.GetAsync(id);
             var testLast = _testRepository.GetLast();
-            var allQuestions = await _questionRepository.GetQuestionsInTest(testLast.Id);
+            Test test = null;
+            if (id == 0)
+                test = testLast;
+            else
+                test = findTest;
+
+            var allQuestions = await _questionRepository.GetQuestionsInTest(test.Id);
             QuestionsViewModel model = new QuestionsViewModel(allQuestions);
 
             return View(model);
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddAnswers(int id) 
+        public async Task<IActionResult> AddAnswers(int id)
         {
-            question = _questionRepository.Get(id);
+            ViewBag.id = id;
+            var question = await _questionRepository.GetAsync(id);
+            var answers = await _answerRepository.GetAnswersInQuestion(question.Id);
+
+            CreateAnswersViewModel model = new CreateAnswersViewModel(answers);
             if (question != null)
-                return View();
+                return View(model);
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> AddAnswers(CreateAnswersViewModel model, int id) 
-        { 
-            var question = _questionRepository.Get(id);
+        public async Task<IActionResult> AddAnswers(CreateAnswersViewModel model, int id)
+        {
+            var question = await _questionRepository.GetAsync(id);
             List<Answer> answers = new List<Answer>();
-            for (int i = 0;i<model.Answers.Count;i++) 
+            for (int i = 0; i < model.Answers.Count; i++)
             {
                 string nameAnswer = model.Answers[i];
                 string isAnswer = model.IsAnswer[i];
@@ -113,13 +134,83 @@ namespace Web_Test_II.Controllers
             foreach (Answer answer in answers)
                 await _answerRepository.AddAsync(answer);
             return RedirectToAction("ViewQuestions", "Home");
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> AddQuestions(int id) 
+        {
+            var test = await _testRepository.GetAsync(id);
+            if(test!=null)
+                return View();
+            return NotFound();  
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddQuestions(CreateQuestionsViewModel model, int id) 
+        {
+            var test = await _testRepository.GetAsync(id);
+            List<Question> questions = new List<Question>();
+            for (int i = 0;i<model.Questions.Count;i++) 
+            { 
+                string nameQuestion = model.Questions[i];
+                var question = new Question() { Name = nameQuestion, Test = test };
+                questions.Add(question);          
+            }
+            foreach (Question item in questions)
+                await _questionRepository.AddAsync(item);
+            return RedirectToAction("ViewQuestions", "Home", new { id = id});
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteQuestion(int id)
+        {
+            int idTest = await _questionRepository.RemoveQuestionAsync(id);
+            return RedirectToAction("ViewQuestions", "Home", new { id = idTest });
+        }
+
         [HttpGet]
-        public IActionResult ViewTests()
-            => View();
+        public async Task<IActionResult> DeleteAnswers(int id) 
+        {
+            ViewBag.id = id;
+            var answers = await _answerRepository.GetAnswersInQuestion(id);
+            DeleteAnswersViewModel model = new DeleteAnswersViewModel(answers);
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAnswer(int id)
+        {
+            int idQuestion = await _answerRepository.RemoveAnswerAsync(id);
+            return RedirectToAction("DeleteAnswers", "Home", new { id = idQuestion });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteTest(int id)
+        {
+            await _testRepository.RemoveAsync(id);
+            return RedirectToAction("ViewTests", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ActiveTest(int id) 
+        {
+            var test = await _testRepository.GetAsync(id);
+            test.IsAvtive = true;
+            await _testRepository.UpdateAsync(test);
+            return RedirectToAction("ViewTests", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeactiveTest(int id)
+        {
+            var test = await _testRepository.GetAsync(id);
+            test.IsAvtive = false;
+            await _testRepository.UpdateAsync(test);
+            return RedirectToAction("ViewTests", "Home");
+        }
+
 
         [HttpGet]
         public IActionResult ViewStudents()

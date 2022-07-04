@@ -1,12 +1,14 @@
 ﻿@using Web_Test_II.Models.ViewModels
 @model CreateAnswersViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Web_Test_II
 @{  
 ViewBag.Title = "Добавление ответа к вопросу";
-var ID = ViewBag.ID;
+var id = ViewBag.id;
 }
-
+<script src="~/js/CreateFieldsAnswers.js"></script>
 <div class="text-center">
+   
     @using (Html.BeginForm(FormMethod.Post))
     {
         <h2 class="display-4">Добавление ответов к вопросу</h2>     
@@ -17,72 +19,43 @@ var ID = ViewBag.ID;
                 
             </div>
             <div class="col-9">
-                <input type="button" class="btn btn-primary" value="Добавить ответ" onclick="newField()"/>
+                <table>
+                    <tr>
+                        <th><input type="button" class="btn btn-primary" value="Добавить ответ" onclick="newField()"/></th>
+                
+                        <th><a asp-action="DeleteAnswers" asp-controller="Home" asp-route-id="@id">Удалить ответы</a></th>
+                </tr>
+                </table>
+                
                 <ul id="answers" class="navbar-nav flex-grow-1">
+                    @foreach(var item in Model.AnswersDB)
+                    {
                         <li class="nav-item" >   
-                            
+                             <p type="text" class="form-control" id="@item.Id">@item.Name</p>
                         </li>
                         <li class="nav-item" id="isAnswer">   
-                            
+                            @if (@item.IsAnswer == true)
+                            {
+                                <p id="@item.Id" name="IsAns" class="form-control">Правильно</p>
+                            }
+                            else
+                            {
+                                <p id="@item.Id" name="IsAns" class="form-control">Не правильно</p>
+                            }
                         </li>
+
+                       
+                    }
                         </ul>
 
+
 <input type="submit" class="btn btn-success" value="Сохранить"/>
+
             </div>
-             @*<div id="IsAnswers" class="col-9"></div>*@
+
             
         </div>
         
     }
 </div>
 
-<script>
-var array = ["Не правильный", "Правильный"];
-
-
-function newField() {
-    // определяем контейнер для хранения полей с вопросами
-    let containerA = document.getElementById("answers"); 
-    let containerB = document.getElementById("isAnswer");
-
-    // получаем текущее количество input (полей для вопросов)
-    let fieldCountA = containerA.getElementsByTagName("input").length;
-    // увеличиваем Id для нового поля
-    let nextFieldIdA = fieldCountA + 1;
-
-    // здесь добавляем элемент, который будет хранить input (в моем случае, у вас может быть по другому или вообще не быть его)
-    let divAnswer = document.createElement("li");
-        
-
-        let divIsAnswer = document.createElement("li");
-       
-
-    // создаем новое поле с новым id, name ДОЛЖЕН СОВПАДАТЬ С ИМЕНЕМ ПОЛЯ В МОДЕЛИ!!!
-    let fieldA = document.createElement("input");
-        fieldA.setAttribute("class", "form-control");
-        fieldA.setAttribute("id", "Answers[" + nextFieldIdA + "]");
-        fieldA.setAttribute("name", "Answers");
-        fieldA.setAttribute("type", "text");
-        fieldA.setAttribute("placeholder", "Введите текст ответа");
-
-
-         let fieldB = document.createElement("select");
-         fieldB.setAttribute("class", "form-control");
-        fieldB.setAttribute("id", "IsAnswer[" + nextFieldIdA + "]");
-        fieldB.setAttribute("name", "IsAnswer");
-
-    for (var i = 0; i < array.length; i++) 
-    {
-        var option = document.createElement("option");
-        option.value = array[i];
-        option.text = array[i];
-        fieldB.appendChild(option);
-    }
-
-
-    // добавляем поле в <div class="form-group"></div>
-    divAnswer.appendChild(fieldA);
-     divIsAnswer.appendChild(fieldB);
-    containerA.appendChild(divAnswer);
-    containerA.appendChild(divIsAnswer);
-}</script>

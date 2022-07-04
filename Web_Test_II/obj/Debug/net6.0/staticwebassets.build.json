@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EaaaWQDfUzxpACqIM+i4i3F58Uso52j0KPNaG+90Gzo=",
+  "Hash": "Y9MVj7kKaIHJeNAgpAIZMMcfX85YuUqWBhr7rRiSckk=",
   "Source": "Web_Test_II",
   "BasePath": "_content/Web_Test_II",
   "Mode": "Default",
@@ -85,12 +85,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\js\\CreateFieldsAnswers.js",
       "SourceId": "Web_Test_II",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\",
       "BasePath": "_content/Web_Test_II",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/CreateFieldsAnswers.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +99,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\CreateFieldsAnswers.js"
+    },
+    {
+      "Identity": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\js\\CreateFieldsQuestions.js",
+      "SourceId": "Web_Test_II",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\",
+      "BasePath": "_content/Web_Test_II",
+      "RelativePath": "js/CreateFieldsQuestions.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CreateFieldsQuestions.js"
     },
     {
       "Identity": "C:\\Users\\evtku\\source\\repos\\ASP_NET_MVC_CreateTest\\Web_Test_II\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

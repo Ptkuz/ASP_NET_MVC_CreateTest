@@ -19,8 +19,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRBbnN3ZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/AddQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRRdWVzdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/CreateTest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVUZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/DeleteAnswers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZWxldGVBbnN3ZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/Index.cshtml]

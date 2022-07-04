@@ -12,9 +12,13 @@ namespace Web_Test_II.Models.ViewModels
         public List<string> Answers { get; set; }
         public List<string> IsAnswer { get; set; }
 
-        public CreateAnswersViewModel()
-        {
+        public IQueryable<Answer> AnswersDB { get; set; }
 
+        public CreateAnswersViewModel() { }
+
+        public CreateAnswersViewModel(IQueryable<Answer> answersDB)
+        {
+            AnswersDB = answersDB;
         }
     }
 }
