@@ -27,13 +27,14 @@ var id = ViewBag.id;
                 </tr>
                 </table>
                 
-                <ul id="answers" class="navbar-nav flex-grow-1">
+                <table id="answers">
                     @foreach(var item in Model.AnswersDB)
                     {
-                        <li class="nav-item" >   
+                        <tr>
+                        <th class="nav-item" >   
                              <p type="text" class="form-control" id="@item.Id">@item.Name</p>
-                        </li>
-                        <li class="nav-item" id="isAnswer">   
+                        </th>
+                        <th class="nav-item" id="isAnswer">   
                             @if (@item.IsAnswer == true)
                             {
                                 <p id="@item.Id" name="IsAns" class="form-control">Правильно</p>
@@ -42,11 +43,11 @@ var id = ViewBag.id;
                             {
                                 <p id="@item.Id" name="IsAns" class="form-control">Не правильно</p>
                             }
-                        </li>
+                        </th>
 
-                       
+                       </tr>
                     }
-                        </ul>
+                        </table>
 
 
 <input type="submit" class="btn btn-success" value="Сохранить"/>

@@ -12,10 +12,11 @@ function newField() {
     let nextFieldIdA = fieldCountA + 1;
 
     // здесь добавляем элемент, который будет хранить input (в моем случае, у вас может быть по другому или вообще не быть его)
-    let divAnswer = document.createElement("li");
+    let trAnswer = document.createElement("tr");
+    let thAnswer = document.createElement("th");
 
 
-    let divIsAnswer = document.createElement("li");
+    let thIsAnswer = document.createElement("th");
 
 
     // создаем новое поле с новым id, name ДОЛЖЕН СОВПАДАТЬ С ИМЕНЕМ ПОЛЯ В МОДЕЛИ!!!
@@ -41,8 +42,9 @@ function newField() {
 
 
     // добавляем поле в <div class="form-group"></div>
-    divAnswer.appendChild(fieldA);
-    divIsAnswer.appendChild(fieldB);
-    containerA.appendChild(divAnswer);
-    containerA.appendChild(divIsAnswer);
+    thAnswer.appendChild(fieldA);
+    thIsAnswer.appendChild(fieldB);
+    trAnswer.appendChild(thAnswer);
+    trAnswer.appendChild(thIsAnswer);
+    containerA.appendChild(trAnswer);
 }

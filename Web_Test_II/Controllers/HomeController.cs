@@ -82,8 +82,15 @@ namespace Web_Test_II.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewTests()
         {
-            var allTests = _testRepository.Items;
-            TestViewModel model = new TestViewModel(allTests);
+            var allTests = _testRepository.Items.ToList();
+            List<int> countQuest = new List<int>();
+            foreach (var test in allTests) 
+            {
+                var questionsInTest = await _questionRepository.GetQuestionsInTest(test.Id);
+                countQuest.Add(questionsInTest.Count());
+            }
+           
+            TestViewModel model = new TestViewModel(allTests, countQuest);
             return View(model);
         }
 
@@ -102,7 +109,17 @@ namespace Web_Test_II.Controllers
                 test = findTest;
 
             var allQuestions = await _questionRepository.GetQuestionsInTest(test.Id);
-            QuestionsViewModel model = new QuestionsViewModel(allQuestions);
+            var listQuestion = allQuestions.ToList();
+            List<int> countAnswers = new List<int>();
+            List<int> countTrueAnswers = new List<int>();
+            foreach (var question in listQuestion) 
+            {
+                var answersInQuestion = await _answerRepository.GetAnswersInQuestion(question.Id);
+                var trueAnswers = answersInQuestion.Where(item => item.IsAnswer == true);
+                countAnswers.Add(answersInQuestion.Count());
+                countTrueAnswers.Add(trueAnswers.Count());
+            }
+            QuestionsViewModel model = new QuestionsViewModel(listQuestion, countAnswers, countTrueAnswers);
 
             return View(model);
         }
@@ -122,7 +139,11 @@ namespace Web_Test_II.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAnswers(CreateAnswersViewModel model, int id)
         {
+            
+
             var question = await _questionRepository.GetAsync(id);
+
+            int idTest = question.Test.Id; // ID теста для редиректа на ту же страницу
             List<Answer> answers = new List<Answer>();
             for (int i = 0; i < model.Answers.Count; i++)
             {
@@ -133,7 +154,7 @@ namespace Web_Test_II.Controllers
             }
             foreach (Answer answer in answers)
                 await _answerRepository.AddAsync(answer);
-            return RedirectToAction("ViewQuestions", "Home");
+            return RedirectToAction("ViewQuestions", "Home", new { id = idTest });
         }
 
         [HttpGet]
@@ -159,6 +180,18 @@ namespace Web_Test_II.Controllers
             foreach (Question item in questions)
                 await _questionRepository.AddAsync(item);
             return RedirectToAction("ViewQuestions", "Home", new { id = id});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditQuestion(int id, string parameterName) 
+        {
+            var question = await _questionRepository.GetAsync(id);
+            question.Name = parameterName;
+
+            int idTest = question.Test.Id;
+
+            await _questionRepository.UpdateAsync(question);    
+            return RedirectToAction("ViewQuestions", "Home", new { id = idTest });
         }
 
 

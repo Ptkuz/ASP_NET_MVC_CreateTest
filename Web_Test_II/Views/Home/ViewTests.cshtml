@@ -27,6 +27,9 @@
                     <a>Активность</a>
                 </th>
                 <th>
+                    <a>Количество вопросов</a>
+                </th>
+                <th>
                     <a>Редактировать</a>
                 </th>
                  <th>
@@ -34,18 +37,18 @@
                 </th>
             </tr>
             
-            @foreach(var item in Model.Tests)
+            @for(int i = 0; i<Model.Tests.Count();i++)
             {
                 num++;
                 <tr>
                     <td>
                         @num
                     </td>
-                    <td>@item.Name</td>
-                @if (item.IsAvtive == false)
+                    <td>@Model.Tests[i].Name</td>
+                @if (@Model.Tests[i].IsAvtive == false)
                 {
                     <td>
-                         <form asp-controller="Home" asp-action="ActiveTest" method="post"  asp-route-id="@item.Id">
+                         <form asp-controller="Home" asp-action="ActiveTest" method="post"  asp-route-id="@Model.Tests[i].Id">
                     <input type="submit" value="Активировать" class="form-control" />
                 </form>
                     </td>
@@ -53,15 +56,16 @@
                 else
                 {
                      <td>
-                         <form asp-controller="Home" asp-action="DeactiveTest" method="post"  asp-route-id="@item.Id">
+                         <form asp-controller="Home" asp-action="DeactiveTest" method="post"  asp-route-id="@Model.Tests[i].Id">
                     <input type="submit" value="Деактивировать" class="form-control" />
                 </form>
                     </td>
                 }
+                    <td>@Model.CountQuest[i]</td>
 
-                    <td><a asp-action="ViewQuestions" asp-controller="Home" asp-route-id="@item.Id">Редактировать вопросы</a></td>
+                    <td><a asp-action="ViewQuestions" asp-controller="Home" asp-route-id="@Model.Tests[i].Id">Редактировать вопросы</a></td>
                     <td>
-                        <form asp-controller="Home" asp-action="DeleteTest" method="post"  asp-route-id="@item.Id">
+                        <form asp-controller="Home" asp-action="DeleteTest" method="post"  asp-route-id="@Model.Tests[i].Id">
                     <input type="submit" value="Удалить" class="form-control" />
                 </form>
                     </td>

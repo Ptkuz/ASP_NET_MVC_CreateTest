@@ -4,13 +4,15 @@ namespace Web_Test_II.Models.ViewModels
 {
     public class TestViewModel
     {
-        public IQueryable<Test> Tests { get; set; }
+        public List<Test> Tests { get; set; }
+        public List<int> CountQuest { get; set; }
 
 
         public TestViewModel() { }
-        public TestViewModel(IQueryable<Test> tests)
+        public TestViewModel(List<Test> tests, List<int> countQuest)
         {
             Tests = tests;
+            CountQuest = countQuest;
         }
     }
 }

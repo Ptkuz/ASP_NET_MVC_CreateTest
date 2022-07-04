@@ -5,13 +5,17 @@ namespace Web_Test_II.Models.ViewModels
 {
     public class QuestionsViewModel
     {
-        public IQueryable<Question> Questions { get; set; }
+        public List<Question> Questions { get; set; }
+        public List<int> CountAnswers { get; set; }
+        public List<int> CountTrueAnswers { get; set; }
 
 
         public QuestionsViewModel() { }
-        public QuestionsViewModel(IQueryable<Question> questions)
-		{
+        public QuestionsViewModel(List<Question> questions, List<int> countAnswers, List<int> countTrueAnswers)
+        {
             Questions = questions;
-		}
-	}
+            CountAnswers = countAnswers;
+            CountTrueAnswers = countTrueAnswers;
+        }
+    }
 }
