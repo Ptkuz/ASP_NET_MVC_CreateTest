@@ -12,6 +12,7 @@ namespace Web_Test_II_DAL
         private readonly DbSet<T> _entities;
         private readonly DbSet<Question> questions;
         private readonly DbSet<Answer> answers;
+        private readonly DbSet<Test> tests;
 
         private bool AutoSaveChanges { get; set; } = true;
 
@@ -21,11 +22,13 @@ namespace Web_Test_II_DAL
             _entities = db.Set<T>();
             questions = db.Set<Question>();
             answers = db.Set<Answer>();
+            tests = db.Set<Test>();
         }
 
         public virtual IQueryable<T> Items => _entities;
         public virtual IQueryable<Question> Questions => questions;
         public virtual IQueryable<Answer> Answers => answers;
+        public virtual IQueryable<Test> Tests => tests;
 
         public T Get(int id)
         {
@@ -44,7 +47,7 @@ namespace Web_Test_II_DAL
 
         public async Task<IQueryable<T>> GetQuestionsInTest(int idTest, CancellationToken Cancel = default)
         {
-            var items = await Questions.Where(item => item.Test.Id == idTest).ToListAsync();
+            var items = await Questions.Where(item => item.Test.Id == idTest).Include(item => item.Answers).ToListAsync();
             return (IQueryable<T>)items.AsQueryable();
 
         }
@@ -70,6 +73,12 @@ namespace Web_Test_II_DAL
             if(countQuestions==countTrue && questions.Count != 0)
                 return true;
             return false;
+        }
+
+        public async Task<IQueryable<T>> GetAvailableTests() 
+        {
+            var items = await Tests.Where(item => item.IsAvtive == true).ToListAsync();
+            return (IQueryable<T>)items.AsQueryable();
         }
 
 

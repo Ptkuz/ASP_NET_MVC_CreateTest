@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
+using Web_Test_II.Models.ViewModels.TestingViewModel;
 
 namespace Web_Test_II.Controllers
 {
@@ -31,6 +32,30 @@ namespace Web_Test_II.Controllers
         }
 
 
-       
+        [HttpGet]
+        public async Task<IActionResult> ViewAvailableTests() 
+        { 
+            var availableTests = await _testRepository.GetAvailableTests();
+            var availableTestsToList = availableTests.ToList();
+
+            List<int> countQuest = new List<int>();
+            foreach (var test in availableTests)
+            {
+                var questionsInTest = await _questionRepository.GetQuestionsInTest(test.Id);
+                countQuest.Add(questionsInTest.Count());
+            }
+
+            AvailableTestsViewModel model = new AvailableTestsViewModel(availableTestsToList, countQuest);
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OpenTest(int id) 
+        {
+           
+            var questions = await _questionRepository.GetQuestionsInTest(id);
+            OpenTestViewModel model = new OpenTestViewModel(questions);
+            return View(model);
+        }
     }
 }
