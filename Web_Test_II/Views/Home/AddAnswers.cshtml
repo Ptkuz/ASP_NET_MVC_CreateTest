@@ -23,7 +23,7 @@ var id = ViewBag.id;
                     <tr>
                         <th><input type="button" class="btn btn-primary" value="Добавить ответ" onclick="newField()"/></th>
                 
-                        <th><a asp-action="DeleteAnswers" asp-controller="Home" asp-route-id="@id">Удалить ответы</a></th>
+                        <th><a asp-action="ViewAnswers" asp-controller="Home" asp-route-id="@id">Редактировать ответы</a></th>
                 </tr>
                 </table>
                 

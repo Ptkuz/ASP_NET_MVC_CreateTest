@@ -154,7 +154,7 @@ namespace Web_Test_II.Controllers
             }
             foreach (Answer answer in answers)
                 await _answerRepository.AddAsync(answer);
-            return RedirectToAction("ViewQuestions", "Home", new { id = idTest });
+            return RedirectToAction("ViewAnswers", "Home", new { id = id });
         }
 
         [HttpGet]
@@ -194,6 +194,27 @@ namespace Web_Test_II.Controllers
             return RedirectToAction("ViewQuestions", "Home", new { id = idTest });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditAnswer(int id, string parameterName, string parameterTrue) 
+        {
+            var answer = await _answerRepository.GetAsync(id);
+            answer.Name = parameterName;
+            answer.IsAnswer = parameterTrue == "Правильно" ? true : false;
+            int idQuestion = answer.Question.Id;
+            await _answerRepository.UpdateAsync(answer);
+
+            return RedirectToAction("ViewAnswers", "Home", new {id = idQuestion});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTest(int id, string parameterName) 
+        { 
+            var test = await _testRepository.GetAsync(id);  
+            test.Name = parameterName;
+            await _testRepository.UpdateAsync(test);
+            return RedirectToAction("ViewTests", "Home");
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> DeleteQuestion(int id)
@@ -203,11 +224,11 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> DeleteAnswers(int id) 
+        public async Task<IActionResult> ViewAnswers(int id) 
         {
             ViewBag.id = id;
             var answers = await _answerRepository.GetAnswersInQuestion(id);
-            DeleteAnswersViewModel model = new DeleteAnswersViewModel(answers);
+            AnswersViewModel model = new AnswersViewModel(answers);
             return View(model);
         }
 
@@ -215,7 +236,7 @@ namespace Web_Test_II.Controllers
         public async Task<IActionResult> DeleteAnswer(int id)
         {
             int idQuestion = await _answerRepository.RemoveAnswerAsync(id);
-            return RedirectToAction("DeleteAnswers", "Home", new { id = idQuestion });
+            return RedirectToAction("ViewAnswers", "Home", new { id = idQuestion });
         }
 
 
@@ -230,8 +251,16 @@ namespace Web_Test_II.Controllers
         public async Task<IActionResult> ActiveTest(int id) 
         {
             var test = await _testRepository.GetAsync(id);
-            test.IsAvtive = true;
-            await _testRepository.UpdateAsync(test);
+            bool trueAnswers = await _testRepository.GetCountTrueAnswers(id);
+            if (trueAnswers)
+            {
+                test.IsAvtive = true;
+                await _testRepository.UpdateAsync(test);
+            }
+            else 
+            {
+                ViewBag.Message = "Вы не можете активировать тест, пока во всех вопросах не будет задано хотя бы одного правильного ответа!";
+            }
             return RedirectToAction("ViewTests", "Home");
         }
 

@@ -20,6 +20,7 @@ namespace Web_Test_II_Interfaces
         Task<int> RemoveQuestionAsync(int id, CancellationToken Cancel = default);
         Task<int> RemoveAnswerAsync(int id, CancellationToken Cancel = default);
         Task RemoveAsync(int id, CancellationToken Cancel = default);
+        Task<bool> GetCountTrueAnswers(int idTest, CancellationToken Cancel = default);
         Task SaveChangesAsync();
     }
 }

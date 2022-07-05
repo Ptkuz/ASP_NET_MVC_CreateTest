@@ -3,13 +3,13 @@ using Web_Test_II_DAL.Entityes;
 
 namespace Web_Test_II.Models.ViewModels
 {
-    public class DeleteAnswersViewModel
+    public class AnswersViewModel
     {
         public IQueryable<Answer> Answers { get; set; }
 
-        public DeleteAnswersViewModel() { }
+        public AnswersViewModel() { }
 
-        public DeleteAnswersViewModel(IQueryable<Answer> answers)
+        public AnswersViewModel(IQueryable<Answer> answers)
         {
             Answers = answers;
         }

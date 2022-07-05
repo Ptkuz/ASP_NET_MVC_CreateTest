@@ -8,6 +8,7 @@
 @{
     int num = 0;
     ViewBag.Title = "Просмотр тестов";
+     
     
 }
 
@@ -22,6 +23,9 @@
                 </th>
                 <th>
                     <a>Тест</a>
+                </th>
+                <th>
+                    <a>Редактирование</a>
                 </th>
                 <th>
                     <a>Активность</a>
@@ -44,7 +48,14 @@
                     <td>
                         @num
                     </td>
-                    <td>@Model.Tests[i].Name</td>
+                     <form asp-controller="Home" asp-action="EditTest" method="post"  asp-route-id="@Model.Tests[i].Id">
+                    <td>
+                       <input type="text" name="parameterName" class="form-control" id="@Model.Tests[i].Id" value="@Model.Tests[i].Name"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Редактировать" class="form-control" />
+                        </td>
+                        </form>
                 @if (@Model.Tests[i].IsAvtive == false)
                 {
                     <td>

@@ -1,9 +1,10 @@
 ﻿@using Web_Test_II_DAL.Entityes;
 @using Web_Test_II.Models.ViewModels;
 @model QuestionsViewModel
-@{  
-ViewBag.Title = "Добавление вопросов к тесту";
-int idTest = ViewBag.Id;
+@{
+    ViewBag.Title = "Добавление вопросов к тесту";
+    int idTest = ViewBag.Id;
+    int num = 0;
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, Web_Test_II
@@ -14,15 +15,18 @@ int idTest = ViewBag.Id;
 
 <div class="text-center">
 
-        <h2 class="display-4">Добавление ответов к вопросам теста</h2>  
+        <h2 class="display-4">Редактирование вопросов теста</h2>  
          <a asp-action="AddQuestions" asp-controller="Home" asp-route-id="@idTest">Добавить вопросы</a>
         <table class="table">
             <tr>
                 <th>
+                    <a>Номер</a>
+                </th>
+                <th>
                     <a>Вопрос</a>
                 </th>
                 <th>
-                    Редактирование вопроса
+                    <a>Редактирование вопроса</a>
                 </th>
                  <th>
                     <a>Удалить вопрос</a>
@@ -36,13 +40,15 @@ int idTest = ViewBag.Id;
             </tr>
             @for(int i = 0; i<Model.Questions.Count();i++)
             {
-                <tr>
-                    @* @using (Html.BeginForm("EditQuestion", "Home", FormMethod.Post))
-                            {*@
-                                <form asp-controller="Home" asp-action="EditQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
+            num++;
+            <tr>
+                    <td>
+                     @num   
+                    </td>
+                   <form asp-controller="Home" asp-action="EditQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
                     <td>
                        
-                         <input type="text" name="parameterName" id="@Model.Questions[i].Id" value="@Model.Questions[i].Name" />
+                         <input type="text" class="form-control" name="parameterName" id="@Model.Questions[i].Id" value="@Model.Questions[i].Name" />
                             
                         </td>
                     <td>
@@ -51,7 +57,6 @@ int idTest = ViewBag.Id;
                             
                     </td>
                     </form>
-                    @*}*@
                     <td>
                             <form asp-controller="Home" asp-action="DeleteQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
                             <input type="submit" value="Удалить" class="form-control" />
@@ -60,7 +65,7 @@ int idTest = ViewBag.Id;
                     <td>
                         <p>@Model.CountAnswers[i] (@Model.CountTrueAnswers[i])</p>
                     </td>
-                    <td><a asp-action="AddAnswers" asp-controller="Home" asp-route-id="@Model.Questions[i].Id">Добавить ответы</a></td>
+                    <td><a asp-action="ViewAnswers" asp-controller="Home" asp-route-id="@Model.Questions[i].Id">Редактировать ответы</a></td>
                 </tr>           
         }
         </table>

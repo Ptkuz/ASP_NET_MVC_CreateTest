@@ -8,9 +8,10 @@
 
     @using (Html.BeginForm(FormMethod.Post))
     {
-        <h2 class="display-4">Создание нового теста</h2>     
-        <label asp-for="Test.Name"></label><br/>
-           <input type="text" asp-for="Test.Name"/>
+        <h2 class="display-4">Создание нового теста</h2>   
+        
+        <label asp-for="Test.Name"  class="display-5"></label>
+           <input type="text" class="form-control" asp-for="Test.Name"/>
            <span asp-validation-for="Test.Name"/> 
 
         <h1 class="display-4">@Html.DisplayNameFor(m => m.Questions)</h1>

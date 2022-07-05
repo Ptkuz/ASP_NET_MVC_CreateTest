@@ -56,7 +56,21 @@ namespace Web_Test_II_DAL
 
         }
 
-      
+        public async Task<bool> GetCountTrueAnswers(int idTest, CancellationToken Cancel  =default) 
+        {
+            int countTrue = 0;
+            var questions = await Questions.Where(item => item.Test.Id == idTest).ToListAsync();
+            var countQuestions = questions.Count;
+            foreach (var question in questions) 
+            {
+                var answers = await Answers.Where(item => item.Question.Id == question.Id && item.IsAnswer == true).ToListAsync();
+                if(answers.Count > 0)
+                    countTrue++;
+            }
+            if(countQuestions==countTrue && questions.Count != 0)
+                return true;
+            return false;
+        }
 
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
