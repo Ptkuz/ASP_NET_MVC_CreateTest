@@ -65,13 +65,28 @@ namespace Web_Test_II.Controllers
             string[] questionsId = keys["questionId"];
             foreach (var questionId in questionsId) 
             {
+                var allAnswers = await _answerRepository.GetAnswersInQuestion(Int32.Parse(questionId)); // List всех ответов
                 var answersCurrent = await _questionRepository.GetTrueAnswers(Int32.Parse(questionId)); // List правильных ответов
+                bool checkTextBox = allAnswers.Count() == answersCurrent.Count(); // Если количество ответов равно количеству правильных ответов, значит это поля textbox
                 string[] answers = keys["question_" + questionId]; // Массив выбранных ответов пользователя
                 int countAnswer = 0; // Счетчик правильных ответов
                 foreach (var answer in answers) 
                 {
-                  if(answersCurrent.Contains(Int32.Parse(answer)))
-                        countAnswer++;
+                    if (checkTextBox)
+                    {
+                        var firstAnswer = allAnswers.First();
+                        if(firstAnswer.Name == answer)
+                            countAnswer++;
+                    }
+                    else
+                    {
+                        bool answerParse = Int32.TryParse(answer, out int idAnswer);
+                        if (answerParse)
+                        {
+                            if (answersCurrent.Contains(idAnswer))
+                                countAnswer++;
+                        }
+                    }
                 }
                 if(answersCurrent.Count==countAnswer)
                     score++;
