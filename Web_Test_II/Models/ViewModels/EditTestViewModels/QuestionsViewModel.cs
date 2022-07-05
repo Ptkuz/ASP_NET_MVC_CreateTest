@@ -1,7 +1,7 @@
 ﻿using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
 
-namespace Web_Test_II.Models.ViewModels
+namespace Web_Test_II.Models.ViewModels.EditTestViewModels
 {
     public class QuestionsViewModel
     {

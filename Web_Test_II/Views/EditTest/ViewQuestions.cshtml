@@ -1,5 +1,5 @@
 ﻿@using Web_Test_II_DAL.Entityes;
-@using Web_Test_II.Models.ViewModels;
+@using Web_Test_II.Models.ViewModels.EditTestViewModels;
 @model QuestionsViewModel
 @{
     ViewBag.Title = "Добавление вопросов к тесту";
@@ -16,7 +16,7 @@
 <div class="text-center">
 
         <h2 class="display-4">Редактирование вопросов теста</h2>  
-         <a asp-action="AddQuestions" asp-controller="Home" asp-route-id="@idTest">Добавить вопросы</a>
+         <a asp-action="AddQuestions" asp-controller="EditTest" asp-route-id="@idTest">Добавить вопросы</a>
         <table class="table">
             <tr>
                 <th>
@@ -45,7 +45,7 @@
                     <td>
                      @num   
                     </td>
-                   <form asp-controller="Home" asp-action="EditQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
+                   <form asp-controller="EditTest" asp-action="EditQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
                     <td>
                        
                          <input type="text" class="form-control" name="parameterName" id="@Model.Questions[i].Id" value="@Model.Questions[i].Name" />
@@ -58,14 +58,14 @@
                     </td>
                     </form>
                     <td>
-                            <form asp-controller="Home" asp-action="DeleteQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
+                            <form asp-controller="EditTest" asp-action="DeleteQuestion" method="post"  asp-route-id="@Model.Questions[i].Id">
                             <input type="submit" value="Удалить" class="form-control" />
                             </form>
                     </td>
                     <td>
                         <p>@Model.CountAnswers[i] (@Model.CountTrueAnswers[i])</p>
                     </td>
-                    <td><a asp-action="ViewAnswers" asp-controller="Home" asp-route-id="@Model.Questions[i].Id">Редактировать ответы</a></td>
+                    <td><a asp-action="ViewAnswers" asp-controller="EditTest" asp-route-id="@Model.Questions[i].Id">Редактировать ответы</a></td>
                 </tr>           
         }
         </table>

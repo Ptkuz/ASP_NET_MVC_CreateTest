@@ -1,6 +1,6 @@
 ﻿using Web_Test_II_DAL.Entityes;
 
-namespace Web_Test_II.Models.ViewModels
+namespace Web_Test_II.Models.ViewModels.EditTestViewModels
 {
     public class TestViewModel
     {

@@ -31,10 +31,6 @@ namespace Web_Test_II.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> ViewAvailableTests() 
-        {
-            
-        }
+       
     }
 }

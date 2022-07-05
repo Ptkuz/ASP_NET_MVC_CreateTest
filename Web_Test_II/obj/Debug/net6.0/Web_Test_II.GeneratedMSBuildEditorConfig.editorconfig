@@ -15,16 +15,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\evtku\source\repos\ASP_NET_MVC_CreateTest\Web_Test_II
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/AddAnswers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRBbnN3ZXJzLmNzaHRtbA==
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/CreateTest/CreateTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlVGVzdFxDcmVhdGVUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/AddQuestions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRRdWVzdGlvbnMuY3NodG1s
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/EditTest/AddAnswers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcQWRkQW5zd2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/CreateTest.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVUZXN0LmNzaHRtbA==
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/EditTest/AddQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcQWRkUXVlc3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/EditTest/ViewAnswers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld0Fuc3dlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/EditTest/ViewQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld1F1ZXN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/EditTest/ViewTests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld1Rlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/Index.cshtml]
@@ -35,20 +47,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/ViewAnswers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3QW5zd2Vycy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/ViewQuestions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3UXVlc3Rpb25zLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/ViewStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3U3R1ZGVudHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Home/ViewTests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3VGVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Shared/Error.cshtml]

@@ -1,4 +1,4 @@
-﻿@using Web_Test_II.Models.ViewModels
+﻿@using Web_Test_II.Models.ViewModels.EditTestViewModels;
 @model AnswersViewModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, Web_Test_II
@@ -13,7 +13,7 @@
    
         <h2 class="display-4">Редактирование ответов к вопросу</h2>     
 
-        <a asp-action="AddAnswers" asp-controller="Home" asp-route-id="@id">Добавить ответы</a>
+        <a asp-action="AddAnswers" asp-controller="EditTest" asp-route-id="@id">Добавить ответы</a>
         <div class="row">
             <div class="col-3">
                 
@@ -35,7 +35,7 @@
                              <td>
                                  @num
                              </td>
-                             <form asp-controller="Home" asp-action="EditAnswer" method="post"  asp-route-id="@item.Id">
+                             <form asp-controller="EditTest" asp-action="EditAnswer" method="post"  asp-route-id="@item.Id">
                         <td>   
                             <input type="text"  class="form-control" name="parameterName" id="@item.Id" value="@item.Name"/>
                         </td>
@@ -60,7 +60,7 @@
                         </td>
                           </form>
                         <td>
-                            <form asp-controller="Home" asp-action="DeleteAnswer" method="post"  asp-route-id="@item.Id">
+                            <form asp-controller="EditTest" asp-action="DeleteAnswer" method="post"  asp-route-id="@item.Id">
                     <input type="submit" value="Удалить" class="form-control" />
                             </form>
                         </td>
