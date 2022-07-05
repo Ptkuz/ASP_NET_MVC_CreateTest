@@ -15,7 +15,7 @@ namespace Web_Test_II.Controllers
         private readonly IRepository<Student> _studentRepository;
         private readonly IRepository<Test> _testRepository;
         public TestingController(
-            ILogger<TestingController> logger, 
+            ILogger<TestingController> logger,
             IRepository<Answer> answerRepository,
             IRepository<Question> questionRepository,
             IRepository<Result> resultRepository,
@@ -33,8 +33,8 @@ namespace Web_Test_II.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> ViewAvailableTests() 
-        { 
+        public async Task<IActionResult> ViewAvailableTests()
+        {
             var availableTests = await _testRepository.GetAvailableTests();
             var availableTestsToList = availableTests.ToList();
 
@@ -50,12 +50,35 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> OpenTest(int id) 
+        public async Task<IActionResult> OpenTest(int id)
         {
-           
+
             var questions = await _questionRepository.GetQuestionsInTest(id);
             OpenTestViewModel model = new OpenTestViewModel(questions);
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OpenTest(IFormCollection keys) 
+        {
+            int score = 0;
+            string[] questionsId = keys["questionId"];
+            foreach (var questionId in questionsId) 
+            {
+                var answersCurrent = await _questionRepository.GetTrueAnswers(Int32.Parse(questionId)); // List правильных ответов
+                string[] answers = keys["question_" + questionId]; // Массив выбранных ответов пользователя
+                int countAnswer = 0; // Счетчик правильных ответов
+                foreach (var answer in answers) 
+                {
+                  if(answersCurrent.Contains(Int32.Parse(answer)))
+                        countAnswer++;
+                }
+                if(answersCurrent.Count==countAnswer)
+                    score++;
+            
+            }
+            int result = score;
+            return View();
         }
     }
 }

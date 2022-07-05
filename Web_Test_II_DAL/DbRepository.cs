@@ -81,6 +81,17 @@ namespace Web_Test_II_DAL
             return (IQueryable<T>)items.AsQueryable();
         }
 
+        public async Task<List<int>> GetTrueAnswers(int idQuestion, CancellationToken Cancel = default) 
+        {
+            List<int> idTrueAnswers = new List<int>();
+            var answers = await Answers.Where(item => item.Question.Id == idQuestion && item.IsAnswer == true).ToListAsync();
+            foreach (var answer in answers) 
+            { 
+                idTrueAnswers.Add(answer.Id);
+            }
+            return idTrueAnswers;
+        }
+
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
         {
