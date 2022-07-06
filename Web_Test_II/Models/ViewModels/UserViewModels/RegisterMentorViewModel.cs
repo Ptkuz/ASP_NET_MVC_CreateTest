@@ -42,17 +42,16 @@ namespace Web_Test_II.Models.ViewModels.UserViewModels
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Длина должна быть от 3 до 20 символов")]
         public string Patronymic { get; set; } = null!;
 
-        [Required(ErrorMessage = "Должность не указана")]
-        [RegularExpression(@"^[A-ЯЁ][а-яё]+$", ErrorMessage = "Некорректная должность")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "Длина должна быть от 3 до 20 символов")]
-        [Display(Name = "Должность:")]
-        public Position Position { get; set; } = null!;
 
 
-        public IQueryable<Position> Positions { get; set; }
+        [Required(ErrorMessage = "Должность не выбрана")]
+        [Display(Name = "Профиль:")]
+        public int PositionId { get; set; }
+
+        public Position? Position { get; set; }
 
         public RegisterMentorViewModel() { }
-
+        public IQueryable<Position>? Positions { get; set; }
         public RegisterMentorViewModel(IQueryable<Position> positions) 
         { 
             Positions = positions;

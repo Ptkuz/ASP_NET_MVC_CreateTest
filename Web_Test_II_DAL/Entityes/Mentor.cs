@@ -14,6 +14,6 @@ namespace Web_Test_II_DAL.Entityes
         [RegularExpression(@"^[A-ЯЁ][а-яё]+$", ErrorMessage = "Некорректная должность")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Длина должна быть от 3 до 20 символов")]
         [Display(Name = "Должность:")]
-        public string Position { get; set; } = null!;
+        public Position Position { get; set; } = null!;
     }
 }

@@ -23,6 +23,8 @@ namespace Web_Test_II_Interfaces
         Task<bool> GetCountTrueAnswers(int idTest, CancellationToken Cancel = default);
         Task<IQueryable<T>> GetAvailableTests();
         Task<List<int>> GetTrueAnswers(int idQuestion, CancellationToken Cancel = default);
+        Task<T> GetUserAsync(string email, string password, CancellationToken Cancel = default);
+        Task<T> GetUserAsync(string email, CancellationToken Cancel = default);
         void DisposeContextAsync();
         Task SaveChangesAsync();
     }

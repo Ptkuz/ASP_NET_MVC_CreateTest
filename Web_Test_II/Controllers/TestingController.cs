@@ -2,6 +2,7 @@
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
 using Web_Test_II.Models.ViewModels.TestingViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web_Test_II.Controllers
 {
@@ -33,6 +34,7 @@ namespace Web_Test_II.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "student")]
         public async Task<IActionResult> ViewAvailableTests()
         {
             var availableTests = await _testRepository.GetAvailableTests();
@@ -50,6 +52,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "student")]
         public async Task<IActionResult> OpenTest(int id)
         {
 
@@ -59,6 +62,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "student")]
         public async Task<IActionResult> OpenTest(IFormCollection keys) 
         {
             int score = 0;

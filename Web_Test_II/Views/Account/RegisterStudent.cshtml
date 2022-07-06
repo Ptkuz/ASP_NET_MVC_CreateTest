@@ -9,45 +9,50 @@
 
 }
 <div class="divlogin">
-
+         <h2 class="display-4">Регистрация студента</h2>   
 @using(Html.BeginForm())
 {
     <form asp-action="RegisterStudent" asp-controller="Account" asp-anti-forgery="true">
         <p>
            <label asp-for="Email"></label><br/>
-           <input type="text" asp-for="Email"/>
+           <input type="text" class="form-control" asp-for="Email"/>
            <span asp-validation-for="Email"/>
         </p>
         <p>
            <label asp-for="Password"></label><br/>
-           <input type="password" asp-for="Password"/>
+           <input type="password" class="form-control" asp-for="Password"/>
            <span asp-validation-for="Password"/>
         </p>
         <p>
            <label asp-for="ConfirmPassword"></label><br/>
-           <input type="password" asp-for="ConfirmPassword"/>
+           <input type="password" class="form-control" asp-for="ConfirmPassword"/>
            <span asp-validation-for="ConfirmPassword"/>
         </p>
         <p>
            <label asp-for="Surname"></label><br/>
-           <input type="text" asp-for="Surname"/>
+           <input type="text" class="form-control" asp-for="Surname"/>
            <span asp-validation-for="Surname"/>
         </p>
         <p>
            <label asp-for="Name"></label><br/>
-           <input type="text" asp-for="Name"/>
+           <input type="text" class="form-control" asp-for="Name"/>
            <span asp-validation-for="Name"/>
         </p>
         <p>
            <label asp-for="Patronymic"></label><br/>
-           <input type="text" asp-for="Patronymic"/>
+           <input type="text" class="form-control" asp-for="Patronymic"/>
            <span asp-validation-for="Patronymic"/>
         </p>
         <p>
-           <label asp-for="Group.Id"></label><br/>
-           @Html.DropDownListFor(model => model.Group.Id, ViewBag.Groups as SelectList, "Выбрать группу")<br/>
-           <span asp-validation-for="Group"/>
+           <label asp-for="GroupId"></label><br/>
+           <select name="groupId" class="form-control">
+               @foreach(var item in Model.Groups)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
         </p>
+
         <p>
             <input type="submit" value="Зарегистрировать студента" class="btn btn-outline-dark" />
         </p>

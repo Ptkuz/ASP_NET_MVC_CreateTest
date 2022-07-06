@@ -1,8 +1,8 @@
-﻿using Web_Test_II_DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Web_Test_II_DAL.Context;
+using Web_Test_II_DAL.Entityes;
 using Web_Test_II_DAL.Entityes.Base;
 using Web_Test_II_Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Web_Test_II_DAL.Entityes;
 
 namespace Web_Test_II_DAL
 {
@@ -13,6 +13,9 @@ namespace Web_Test_II_DAL
         private readonly DbSet<Question> questions;
         private readonly DbSet<Answer> answers;
         private readonly DbSet<Test> tests;
+        private readonly DbSet<Mentor> mentors;
+        private readonly DbSet<Student> students;
+        private readonly DbSet<User> users;
 
         private bool AutoSaveChanges { get; set; } = true;
 
@@ -23,16 +26,23 @@ namespace Web_Test_II_DAL
             questions = db.Set<Question>();
             answers = db.Set<Answer>();
             tests = db.Set<Test>();
+            mentors = db.Set<Mentor>();
+            students = db.Set<Student>();
+            users = db.Set<User>();
+
         }
 
         public virtual IQueryable<T> Items => _entities;
         public virtual IQueryable<Question> Questions => questions;
         public virtual IQueryable<Answer> Answers => answers;
         public virtual IQueryable<Test> Tests => tests;
+        public virtual IQueryable<Mentor> Mentors => mentors;
+        public virtual IQueryable<Student> Students => students;
+        public virtual IQueryable<User> Users => users;
 
         public T Get(int id)
         {
-            
+
             T item = Items.SingleOrDefault(item => item.Id == id);
             return item;
         }
@@ -48,7 +58,7 @@ namespace Web_Test_II_DAL
 
         public async Task<IQueryable<T>> GetQuestionsInTest(int idTest, CancellationToken Cancel = default)
         {
-            
+
             var items = await Questions.Where(item => item.Test.Id == idTest).Include(item => item.Answers).ToListAsync();
             return (IQueryable<T>)items.AsQueryable();
 
@@ -61,37 +71,59 @@ namespace Web_Test_II_DAL
 
         }
 
-        public async Task<bool> GetCountTrueAnswers(int idTest, CancellationToken Cancel  =default) 
+        public async Task<bool> GetCountTrueAnswers(int idTest, CancellationToken Cancel = default)
         {
             int countTrue = 0;
             var questions = await Questions.Where(item => item.Test.Id == idTest).ToListAsync();
             var countQuestions = questions.Count;
-            foreach (var question in questions) 
+            foreach (var question in questions)
             {
                 var answers = await Answers.Where(item => item.Question.Id == question.Id && item.IsAnswer == true).ToListAsync();
-                if(answers.Count > 0)
+                if (answers.Count > 0)
                     countTrue++;
             }
-            if(countQuestions==countTrue && questions.Count != 0)
+            if (countQuestions == countTrue && questions.Count != 0)
                 return true;
             return false;
         }
 
-        public async Task<IQueryable<T>> GetAvailableTests() 
+        public async Task<IQueryable<T>> GetAvailableTests()
         {
             var items = await Tests.Where(item => item.IsAvtive == true).ToListAsync();
             return (IQueryable<T>)items.AsQueryable();
         }
 
-        public async Task<List<int>> GetTrueAnswers(int idQuestion, CancellationToken Cancel = default) 
+        public async Task<List<int>> GetTrueAnswers(int idQuestion, CancellationToken Cancel = default)
         {
             List<int> idTrueAnswers = new List<int>();
             var answers = await Answers.Where(item => item.Question.Id == idQuestion && item.IsAnswer == true).ToListAsync();
-            foreach (var answer in answers) 
-            { 
+            foreach (var answer in answers)
+            {
                 idTrueAnswers.Add(answer.Id);
             }
             return idTrueAnswers;
+        }
+
+        public async Task<T> GetUserAsync(string email, string password, CancellationToken Cancel = default)
+        {
+            User user = await Users.FirstOrDefaultAsync(items => items.Email == email && items.Password == password).ConfigureAwait(false);
+            if (user != null)
+            {
+                T genericUser = user as T;
+                return genericUser;
+            }
+            return null;
+        }
+
+        public async Task<T> GetUserAsync(string email, CancellationToken Cancel = default)
+        {
+            User user = await Users.FirstOrDefaultAsync(items => items.Email == email).ConfigureAwait(false);
+            if (user != null)
+            {
+                T genericUser = user as T;
+                return genericUser;
+            }
+            return null;
         }
 
 
@@ -119,7 +151,7 @@ namespace Web_Test_II_DAL
                 ConfigureAwait(false);
             int idTest = question.Test.Id;
             _context.Remove(new T { Id = id });
-           
+
             if (AutoSaveChanges)
                 await _context.SaveChangesAsync(Cancel);
             return idTest;
@@ -131,7 +163,7 @@ namespace Web_Test_II_DAL
                 FirstOrDefaultAsync(item => item.Id == id).
                 ConfigureAwait(false);
             int idQuestrion = answer.Question.Id;
-            _context.Remove(new T { Id = id});
+            _context.Remove(new T { Id = id });
             if (AutoSaveChanges)
                 await _context.SaveChangesAsync(Cancel);
             return idQuestrion;
@@ -145,15 +177,15 @@ namespace Web_Test_II_DAL
                 await _context.SaveChangesAsync(Cancel);
         }
 
-        public async Task SaveChangesAsync()=>
+        public async Task SaveChangesAsync() =>
             await _context.SaveChangesAsync().ConfigureAwait(false);
 
-        public void DisposeContextAsync() 
+        public void DisposeContextAsync()
         {
-           _context.Dispose();
+            _context.Dispose();
             //Thread.Sleep(5000);
         }
 
-        
+
     }
 }

@@ -5,6 +5,7 @@ using Web_Test_II_DAL.Context;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
 using Web_Test_II.Models.ViewModels.CreateTestViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web_Test_II.Controllers
 {
@@ -12,10 +13,7 @@ namespace Web_Test_II.Controllers
     {
         private readonly ILogger<CreateTestController> _logger;
 
-        private readonly IRepository<Answer> _answerRepository;
         private readonly IRepository<Question> _questionRepository;
-        private readonly IRepository<Result> _resultRepository;
-        private readonly IRepository<Student> _studentRepository;
         private readonly IRepository<Test> _testRepository;
 
 
@@ -24,22 +22,17 @@ namespace Web_Test_II.Controllers
 
         public CreateTestController(
             ILogger<CreateTestController> logger,
-            IRepository<Answer> answerRepository,
             IRepository<Question> questionRepository,
-            IRepository<Result> resultRepository,
-            IRepository<Student> studentRepository,
             IRepository<Test> testRepository)
         {
             _logger = logger;
-            _answerRepository = answerRepository;
             _questionRepository = questionRepository;
-            _resultRepository = resultRepository;
-            _studentRepository = studentRepository;
             _testRepository = testRepository;
 
         }
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public IActionResult CreateTest()
         {
 
@@ -47,6 +40,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> CreateTest(CreateTestViewModel model)
         {
             Test test = new Test();
@@ -66,13 +60,6 @@ namespace Web_Test_II.Controllers
           
             return RedirectToAction("ViewQuestions", "EditTest");
         }
-
-       
-
-
-        [HttpGet]
-        public IActionResult ViewStudents()
-            => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

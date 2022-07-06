@@ -44,6 +44,14 @@ namespace Web_Test_II.Models.ViewModels.UserViewModels
 
         [Required(ErrorMessage = "Группа не выбрана")]
         [Display(Name = "Группа:")]
-        public virtual Group Group { get; set; } = null!;
+        public int GroupId { get; set; }
+        public virtual Group? Group { get; set; } = null!;
+
+        public RegisterStudentViewModel() { }
+        public IQueryable<Group>? Groups { get; set; }
+        public RegisterStudentViewModel(IQueryable<Group> groups)
+        {
+            Groups = groups;
+        }
     }
 }

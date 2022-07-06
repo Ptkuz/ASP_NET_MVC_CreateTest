@@ -10,6 +10,6 @@ namespace Web_Test_II_DAL.EntitiesRepositories
         {
         }
         public override IQueryable<Mentor> Items =>
-            base.Items.Include(item => item.User);
+            base.Items.Include(item => item.User).Include(item=>item.Position);
     }
 }

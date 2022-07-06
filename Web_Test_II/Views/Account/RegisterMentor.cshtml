@@ -12,7 +12,7 @@
      <h2 class="display-4">Регистрация преподавателя</h2>     
 @using(Html.BeginForm())
 {
-    <form asp-action="RegisterMentor" asp-controller="Account" method="post" asp-anti-forgery="true">
+    <form asp-action="RegisterMentor" asp-controller="Account" method="post" asp-anti-forgery="true" class="modal">
         <p>
            <label asp-for="Email"></label><br/>
            <input type="text" class="form-control" asp-for="Email"/>
@@ -44,14 +44,14 @@
            <span asp-validation-for="Patronymic"/>
         </p>
         <p>
-          <label asp-for="Position.Id"></label><br/>
-           <select name="position" class="form-control">
+          <label asp-for="PositionId"></label><br/>
+           <select name="positionId" class="form-control">
                @foreach(var item in Model.Positions)
                     {
                         <option value="@item.Id">@item.Name</option>
                     }
                 </select>
-           <span asp-validation-for="Position"/>
+           
         </p>
         <p>
             <input type="submit" value="Зарегистрировать преподавателя" class="btn btn-outline-dark" />

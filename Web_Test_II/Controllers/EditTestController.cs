@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web_Test_II.Models.ViewModels.EditTestViewModels;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
@@ -38,6 +39,7 @@ namespace Web_Test_II.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ViewTests()
         {
                 var allTests = _testRepository.Items.ToList();
@@ -54,6 +56,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ViewQuestions(int id)
         {
 
@@ -84,6 +87,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> AddAnswers(int id)
         {
             ViewBag.id = id;
@@ -97,6 +101,7 @@ namespace Web_Test_II.Controllers
             return NotFound();
         }
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> AddAnswers(CreateAnswersViewModel model, int id)
         {
 
@@ -119,6 +124,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> AddQuestions(int id)
         {
             var test = await _testRepository.GetAsync(id);
@@ -129,6 +135,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> AddQuestions(CreateQuestionsViewModel model, int id)
         {
             var test = await _testRepository.GetAsync(id);
@@ -146,6 +153,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> EditQuestion(int id, string parameterName)
         {
             var question = await _questionRepository.GetAsync(id);
@@ -159,6 +167,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> EditAnswer(int id, string parameterName, string parameterTrue)
         {
             var answer = await _answerRepository.GetAsync(id);
@@ -171,6 +180,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> EditTest(int id, string parameterName)
         {
             var test = await _testRepository.GetAsync(id);
@@ -182,6 +192,7 @@ namespace Web_Test_II.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {
             int idTest = await _questionRepository.RemoveQuestionAsync(id);
@@ -190,6 +201,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ViewAnswers(int id)
         {
             ViewBag.id = id;
@@ -200,6 +212,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteAnswer(int id)
         {
             int idQuestion = await _answerRepository.RemoveAnswerAsync(id);
@@ -209,6 +222,7 @@ namespace Web_Test_II.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteTest(int id)
         {
             await _testRepository.RemoveAsync(id);
@@ -217,6 +231,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ActiveTest(int id)
         {
             var test = await _testRepository.GetAsync(id);
@@ -235,6 +250,7 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeactiveTest(int id)
         {
             var test = await _testRepository.GetAsync(id);

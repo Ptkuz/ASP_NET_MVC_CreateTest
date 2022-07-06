@@ -17,12 +17,12 @@
     <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
         <p>
            <label asp-for="Email"></label><br/>
-           <input type="text" asp-for="Email"/>
+           <input type="text" class="form-control" asp-for="Email"/>
            <span asp-validation-for="Email"/>
         </p>
         <p>
            <label asp-for="Password"></label><br/>
-           <input type="password" asp-for="Password"/>
+           <input type="password" class="form-control" asp-for="Password"/>
            <span asp-validation-for="Password"/>
         </p>
         <p>
