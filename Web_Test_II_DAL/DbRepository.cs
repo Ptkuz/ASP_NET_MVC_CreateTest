@@ -32,6 +32,7 @@ namespace Web_Test_II_DAL
 
         public T Get(int id)
         {
+            
             T item = Items.SingleOrDefault(item => item.Id == id);
             return item;
         }
@@ -47,6 +48,7 @@ namespace Web_Test_II_DAL
 
         public async Task<IQueryable<T>> GetQuestionsInTest(int idTest, CancellationToken Cancel = default)
         {
+            
             var items = await Questions.Where(item => item.Test.Id == idTest).Include(item => item.Answers).ToListAsync();
             return (IQueryable<T>)items.AsQueryable();
 
@@ -145,6 +147,12 @@ namespace Web_Test_II_DAL
 
         public async Task SaveChangesAsync()=>
             await _context.SaveChangesAsync().ConfigureAwait(false);
+
+        public void DisposeContextAsync() 
+        {
+           _context.Dispose();
+            //Thread.Sleep(5000);
+        }
 
         
     }

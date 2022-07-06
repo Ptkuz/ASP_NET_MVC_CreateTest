@@ -63,6 +63,7 @@ namespace Web_Test_II.Controllers
             }
             foreach (Question question in questions)
                 await _questionRepository.AddAsync(question);
+          
             return RedirectToAction("ViewQuestions", "EditTest");
         }
 

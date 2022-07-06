@@ -15,6 +15,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\evtku\source\repos\ASP_NET_MVC_CreateTest\Web_Test_II
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Account/RegisterMentor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlck1lbnRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/Account/RegisterStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlclN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/evtku/source/repos/ASP_NET_MVC_CreateTest/Web_Test_II/Views/CreateTest/CreateTest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlVGVzdFxDcmVhdGVUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -9,11 +9,15 @@ namespace Web_Test_II_DAL
     {
         public static IServiceCollection AddRepositoriesInDB(this IServiceCollection services)=> services
             .AddTransient<IRepository<Answer>, AnswerRepository>()
-            .AddTransient<IRepository<Group>, DbRepository<Group>>()
+            .AddTransient<IRepository<Group>, GroupRepository>()
+            .AddTransient<IRepository<Mentor>, MentorRepository>()
+            .AddTransient<IRepository<Position>, PositionRepository>()
             .AddTransient<IRepository<Question>, QuestionRepository>()
             .AddTransient<IRepository<Result>, ResultRepository>()
+            .AddTransient<IRepository<Role>, RoleRepository>()
             .AddTransient<IRepository<Student>, StudentRepository>()
-            .AddTransient<IRepository<Test>, DbRepository<Test>>()
+            .AddTransient<IRepository<Test>, TestRepository>()
+            .AddTransient<IRepository<User>, UserRepository>()
             ;
     }
 }
