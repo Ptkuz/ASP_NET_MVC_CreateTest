@@ -57,7 +57,8 @@ namespace Web_Test_II.Controllers
         {
 
             var questions = await _questionRepository.GetQuestionsInTest(id);
-            OpenTestViewModel model = new OpenTestViewModel(questions);
+            var questionsList = questions.ToList();
+            OpenTestViewModel model = new OpenTestViewModel(questionsList);
             return View(model);
         }
 
@@ -99,5 +100,7 @@ namespace Web_Test_II.Controllers
             int result = score;
             return View();
         }
+
+        
     }
 }

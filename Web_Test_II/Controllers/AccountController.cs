@@ -24,7 +24,9 @@ namespace Web_Test_II.Controllers
         private readonly IRepository<Group> _groupRepository;
         private readonly IRepository<Role> _roleRepository;
 
-        public static int? idUser { get; set; }
+        public static User? User { get; set; }
+        public static Mentor? Mentor { get; set; }
+        public static Student? Student { get; set; }
 
 
 
@@ -179,7 +181,11 @@ namespace Web_Test_II.Controllers
 
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
-            idUser = user.Id;
+            var mentor = await _mentorRepository.GetMentorOfUserAsync(user.Id);
+            var student = await _studentRepository.GetStudentOfUserAsync(user.Id);
+            User = user;
+            Mentor = mentor;
+            Student = student;
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
@@ -187,7 +193,7 @@ namespace Web_Test_II.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            idUser = null;
+            User = null;
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }

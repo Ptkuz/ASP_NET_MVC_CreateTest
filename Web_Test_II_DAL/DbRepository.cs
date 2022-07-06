@@ -16,6 +16,7 @@ namespace Web_Test_II_DAL
         private readonly DbSet<Mentor> mentors;
         private readonly DbSet<Student> students;
         private readonly DbSet<User> users;
+        private readonly DbSet<Result> results;
 
         private bool AutoSaveChanges { get; set; } = true;
 
@@ -29,6 +30,7 @@ namespace Web_Test_II_DAL
             mentors = db.Set<Mentor>();
             students = db.Set<Student>();
             users = db.Set<User>();
+            results = db.Set<Result>();
 
         }
 
@@ -39,6 +41,7 @@ namespace Web_Test_II_DAL
         public virtual IQueryable<Mentor> Mentors => mentors;
         public virtual IQueryable<Student> Students => students;
         public virtual IQueryable<User> Users => users;
+        public virtual IQueryable<Result> Results => results;
 
         public T Get(int id)
         {
@@ -126,6 +129,33 @@ namespace Web_Test_II_DAL
             return null;
         }
 
+        public async Task<T> GetMentorOfUserAsync(int idUser, CancellationToken Cancel = default) 
+        { 
+            Mentor mentor = await Mentors.Include(item => item.Position).FirstOrDefaultAsync(items => items.UserKey == idUser).ConfigureAwait(false);
+            if (mentor != null) 
+            {
+                T genericMentor = mentor as T;
+                return genericMentor;
+            }
+            return null;
+        }
+
+        public async Task<T> GetStudentOfUserAsync(int idUser, CancellationToken Cancel = default)
+        {
+            Student student = await Students.Include(item=>item.Group).FirstOrDefaultAsync(items => items.UserKey == idUser).ConfigureAwait(false);
+            if (student != null)
+            {
+                T genericStudent = student as T;
+                return genericStudent;
+            }
+            return null;
+        }
+
+        public async Task<IQueryable<T>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default) 
+        {
+            var resultStudent = await Results.Include(item=>item.Test).Include(item=>item.Student).Where(item => item.Student.Id==idStudent).ToListAsync();
+            return (IQueryable<T>)resultStudent.AsQueryable();
+        }
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
         {
