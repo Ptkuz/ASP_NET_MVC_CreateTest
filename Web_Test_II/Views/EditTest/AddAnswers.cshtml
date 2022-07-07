@@ -1,0 +1,62 @@
+﻿@using Web_Test_II.Models.ViewModels.EditTestViewModels;
+@model CreateAnswersViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Web_Test_II
+@{  
+ViewBag.Title = "Добавление ответа к вопросу";
+var id = ViewBag.id;
+}
+<script src="~/js/CreateFieldsAnswers.js"></script>
+<div class="text-center">
+   
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <h2 class="display-4">Добавление ответов к вопросу</h2>     
+
+        <h1 class="display-4">@Html.DisplayNameFor(m => m.Answers)</h1>
+        <div class="row">
+            <div class="col-3">
+                
+            </div>
+            <div class="col-9">
+                <table>
+                    <tr>
+                        <th><input type="button" class="btn btn-primary" value="Добавить ответ" onclick="newField()"/></th>
+                
+                        <th><a asp-action="ViewAnswers" asp-controller="EditTest" asp-route-id="@id">Редактировать ответы</a></th>
+                </tr>
+                </table>
+                
+                <table id="answers">
+                    @foreach(var item in Model.AnswersDB)
+                    {
+                        <tr>
+                        <th class="nav-item" >   
+                             <p type="text" class="form-control" id="@item.Id">@item.Name</p>
+                        </th>
+                        <th class="nav-item" id="isAnswer">   
+                            @if (@item.IsAnswer == true)
+                            {
+                                <p id="@item.Id" name="IsAns" class="form-control">Правильно</p>
+                            }
+                            else
+                            {
+                                <p id="@item.Id" name="IsAns" class="form-control">Не правильно</p>
+                            }
+                        </th>
+
+                       </tr>
+                    }
+                        </table>
+
+
+<input type="submit" class="btn btn-success" value="Сохранить"/>
+
+            </div>
+
+            
+        </div>
+        
+    }
+</div>
+

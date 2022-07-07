@@ -15,8 +15,48 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ptkuz\source\repos\Web_Test_II\Web_Test_II
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Home/CreateTest.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVUZXN0LmNzaHRtbA==
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Account/RegisterMentor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlck1lbnRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Account/RegisterStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlclN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/CreateTest/CreateTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlVGVzdFxDcmVhdGVUZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/DataOperations/ViewGroups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld0dyb3Vwcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/DataOperations/ViewPositions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld1Bvc2l0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/AddAnswers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcQWRkQW5zd2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/AddQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcQWRkUXVlc3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/ViewAnswers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld0Fuc3dlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/ViewQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld1F1ZXN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/ViewTests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcVmlld1Rlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Home/Index.cshtml]
@@ -31,8 +71,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3U3R1ZGVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Home/ViewTests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3VGVzdHMuY3NodG1s
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Result/ViewResultsStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0XFZpZXdSZXN1bHRzU3R1ZGVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Shared/Error.cshtml]
@@ -41,6 +81,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Testing/OpenTest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdGluZ1xPcGVuVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Testing/ViewAvailableTests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdGluZ1xWaWV3QXZhaWxhYmxlVGVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/_ViewImports.cshtml]

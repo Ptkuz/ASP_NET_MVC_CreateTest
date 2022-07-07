@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Web_Test_II.Controllers;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,21 +20,74 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateTest">Создать тест</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewTests">Просмотр тестов</a>
-                        </li>
-                        <li class="nav-item">
+                         
+                        @if (AccountController.User?.Role.Id == 3)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CreateTest" asp-action="CreateTest">Создать тест</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="EditTest" asp-action="ViewTests">Просмотр тестов</a>
+                            </li>
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ViewStudents">Просмотр студентов</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditProfileMenter">
+                                @AccountController.Mentor.Surname @AccountController.Mentor.Name @AccountController.Mentor.Patronymic (@AccountController.Mentor.Position.Name)</a>
+                            </li>
+                        }
+                        
+                        @if (AccountController.User?.Role.Id == 2)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Testing" asp-action="ViewAvailableTests">Пройти тесты</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Result" asp-action="ViewResultsStudent">Результаты</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditProfileStudent">
+                                @AccountController.Student.Surname @AccountController.Student.Name @AccountController.Student.Patronymic (@AccountController.Student.Group.Name)</a>
+                            </li>
+                        }                 
+                        @if (AccountController.User?.Role.Id == 1)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RegisterMentor">Регистрация преподавателя</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RegisterStudent">Регистрация студента</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DataOperations" asp-action="ViewPositions">Должности</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DataOperations" asp-action="ViewGroups">Группы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">Администратор</a>
+                            </li>
+                        }
+                        @if (AccountController.User?.Role.Id == null) 
+                        { 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
                         </li>
+                        }
+                        @if(AccountController.User?.Role.Id != null)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a>
+                        </li>
+                        }
                         
                     </ul>
                 </div>

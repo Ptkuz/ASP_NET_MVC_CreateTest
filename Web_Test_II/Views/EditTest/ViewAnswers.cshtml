@@ -1,0 +1,73 @@
+﻿@using Web_Test_II.Models.ViewModels.EditTestViewModels;
+@model AnswersViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Web_Test_II
+@{
+    ViewBag.Title = "Удаление ответов к вопросу";
+    var id = ViewBag.id;
+    int num = 0;
+}
+
+<div class="text-center">
+   
+   
+        <h2 class="display-4">Редактирование ответов к вопросу</h2>     
+
+        <a asp-action="AddAnswers" asp-controller="EditTest" asp-route-id="@id">Добавить ответы</a>
+        <div class="row">
+            <div class="col-3">
+                
+            </div>
+            <div class="col-9">                
+                <table class="table">
+                    <tr>
+                        <th><a>Номер</a></th>
+                        <th><a>Ответ</a></th>
+                        <th><a>Правильность</a></th>
+                        <th><a>Редактирование</a></th>
+                        <th><a>Удаление</a></th>
+                    </tr>
+                   
+                    @foreach(var item in Model.Answers)
+                {
+                    num++;
+                    <tr>
+                             <td>
+                                 @num
+                             </td>
+                             <form asp-controller="EditTest" asp-action="EditAnswer" method="post"  asp-route-id="@item.Id">
+                        <td>   
+                            <input type="text"  class="form-control" name="parameterName" id="@item.Id" value="@item.Name"/>
+                        </td>
+                        <td> 
+                            <select  class="form-control" name="parameterTrue">
+                            @if (@item.IsAnswer == true)
+                            {
+                                <option value="Правильно" selected>Правильно</option>
+                                <option value="Не правильно">Не правильно</option>
+                            }
+                            else
+                            {
+                              <option value="Правильно">Правильно</option>
+                              <option value="Не правильно" selected>Не правильно</option>
+                            }
+                            </select>
+                        </td>  
+                        <td>
+                             
+                    <input type="submit" value="Редактировать" class="form-control" />
+                          
+                        </td>
+                          </form>
+                        <td>
+                            <form asp-controller="EditTest" asp-action="DeleteAnswer" method="post"  asp-route-id="@item.Id">
+                    <input type="submit" value="Удалить" class="form-control" />
+                            </form>
+                        </td>
+                        </tr>
+                    }                    
+                        </table>
+            </div>           
+        </div>
+</div>
+

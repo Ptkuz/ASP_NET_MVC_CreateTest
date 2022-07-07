@@ -7,6 +7,7 @@ namespace Web_Test_II_DAL.Entityes
     {
         [DisplayName("Название теста")]
         public string Name { get; set; } = null!;
+        public bool IsAvtive { get; set; }
         public virtual List<Question> Questions { get; set; } = new List<Question>();
         public virtual List<Result> Results { get; set; } = new List<Result>();
     }

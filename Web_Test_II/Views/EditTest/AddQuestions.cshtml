@@ -1,0 +1,23 @@
+﻿@using Web_Test_II.Models.ViewModels.CreateTestViewModels
+@model CreateTestViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Web_Test_II
+
+<script src="/js/CreateFieldsQuestions.js"></script>
+<div class="text-center">
+
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <h2 class="display-4">Добавление вопросов к тесту</h2>     
+
+        <h1 class="display-4">@Html.DisplayNameFor(m => m.Questions)</h1>
+        <div class="row">
+            <div class="col-3">
+                <input type="button" class="btn btn-primary" value="Добавить вопрос" onclick="newField()"/>
+            </div>
+            <div id="questions" class="col-9"></div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Сохранить"/>
+    }
+</div>
+
