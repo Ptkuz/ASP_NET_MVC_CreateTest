@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Web_Test_II.Models.ViewModels.EditTestViewModels;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
@@ -42,17 +43,17 @@ namespace Web_Test_II.Controllers
         [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ViewTests()
         {
-                var allTests = _testRepository.Items.ToList();
-                List<int> countQuest = new List<int>();
-                foreach (var test in allTests)
-                {
-                    var questionsInTest = await _questionRepository.GetQuestionsInTest(test.Id);
-                    countQuest.Add(questionsInTest.Count());
-                }
+            var allTests = _testRepository.Items.ToList();
+            List<int> countQuest = new List<int>();
+            foreach (var test in allTests)
+            {
+                var questionsInTest = await _questionRepository.GetQuestionsInTest(test.Id);
+                countQuest.Add(questionsInTest.Count());
+            }
 
-                TestViewModel model = new TestViewModel(allTests, countQuest);
-                
-                return View(model);
+            TestViewModel model = new TestViewModel(allTests, countQuest);
+
+            return View(model);
         }
 
         [HttpGet]
@@ -82,7 +83,7 @@ namespace Web_Test_II.Controllers
                 countTrueAnswers.Add(trueAnswers.Count());
             }
             QuestionsViewModel model = new QuestionsViewModel(listQuestion, countAnswers, countTrueAnswers);
-           
+
             return View(model);
         }
 
@@ -95,7 +96,7 @@ namespace Web_Test_II.Controllers
             var answers = await _answerRepository.GetAnswersInQuestion(question.Id);
 
             CreateAnswersViewModel model = new CreateAnswersViewModel(answers);
-           
+
             if (question != null)
                 return View(model);
             return NotFound();
@@ -119,7 +120,7 @@ namespace Web_Test_II.Controllers
             }
             foreach (Answer answer in answers)
                 await _answerRepository.AddAsync(answer);
-           
+
             return RedirectToAction("ViewQuestions", "EditTest", new { id = idTest });
         }
 
@@ -128,7 +129,7 @@ namespace Web_Test_II.Controllers
         public async Task<IActionResult> AddQuestions(int id)
         {
             var test = await _testRepository.GetAsync(id);
-          
+
             if (test != null)
                 return View();
             return NotFound();
@@ -148,7 +149,7 @@ namespace Web_Test_II.Controllers
             }
             foreach (Question item in questions)
                 await _questionRepository.AddAsync(item);
-         
+
             return RedirectToAction("ViewQuestions", "EditTest", new { id = id });
         }
 
@@ -162,7 +163,7 @@ namespace Web_Test_II.Controllers
             int idTest = question.Test.Id;
 
             await _questionRepository.UpdateAsync(question);
-          
+
             return RedirectToAction("ViewQuestions", "EditTest", new { id = idTest });
         }
 
@@ -175,7 +176,7 @@ namespace Web_Test_II.Controllers
             answer.IsAnswer = parameterTrue == "Правильно" ? true : false;
             int idQuestion = answer.Question.Id;
             await _answerRepository.UpdateAsync(answer);
-          
+
             return RedirectToAction("ViewAnswers", "EditTest", new { id = idQuestion });
         }
 
@@ -186,7 +187,7 @@ namespace Web_Test_II.Controllers
             var test = await _testRepository.GetAsync(id);
             test.Name = parameterName;
             await _testRepository.UpdateAsync(test);
-           
+
             return RedirectToAction("ViewTests", "EditTest");
         }
 
@@ -195,9 +196,17 @@ namespace Web_Test_II.Controllers
         [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {
-            int idTest = await _questionRepository.RemoveQuestionAsync(id);
-          
-            return RedirectToAction("ViewQuestions", "EditTest", new { id = idTest });
+            int idTest=0;
+            try
+            {
+                idTest = await _questionRepository.RemoveQuestionAsync(id);
+
+                return RedirectToAction("ViewQuestions", "EditTest", new { id = idTest });
+            }
+            catch (SqlException)
+            {
+                return RedirectToAction("ViewQuestions", "EditTest", new { id = idTest });
+            }
         }
 
         [HttpGet]
@@ -206,7 +215,7 @@ namespace Web_Test_II.Controllers
         {
             ViewBag.id = id;
             var answers = await _answerRepository.GetAnswersInQuestion(id);
-          
+
             AnswersViewModel model = new AnswersViewModel(answers);
             return View(model);
         }
@@ -215,9 +224,16 @@ namespace Web_Test_II.Controllers
         [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteAnswer(int id)
         {
-            int idQuestion = await _answerRepository.RemoveAnswerAsync(id);
-       
-            return RedirectToAction("ViewAnswers", "EditTest", new { id = idQuestion });
+            int idQuestion = 0;
+            try
+            {
+                idQuestion = await _answerRepository.RemoveAnswerAsync(id);
+                return RedirectToAction("ViewAnswers", "EditTest", new { id = idQuestion });
+            }
+            catch (SqlException)
+            {
+                return RedirectToAction("ViewAnswers", "EditTest", new { id = idQuestion });
+            }
         }
 
 
@@ -225,9 +241,15 @@ namespace Web_Test_II.Controllers
         [Authorize(Roles = "mentor")]
         public async Task<IActionResult> DeleteTest(int id)
         {
-            await _testRepository.RemoveAsync(id);
-           
-            return RedirectToAction("ViewTests", "EditTest");
+            try
+            {
+                await _testRepository.RemoveAsync(id);
+                return RedirectToAction("ViewTests", "EditTest");
+            }
+            catch (SqlException)
+            {
+                return RedirectToAction("ViewTests", "EditTest");
+            }
         }
 
         [HttpPost]
@@ -245,7 +267,7 @@ namespace Web_Test_II.Controllers
             {
                 ViewBag.Message = "Вы не можете активировать тест, пока во всех вопросах не будет задано хотя бы одного правильного ответа!";
             }
-           
+
             return RedirectToAction("ViewTests", "EditTest");
         }
 
@@ -256,7 +278,7 @@ namespace Web_Test_II.Controllers
             var test = await _testRepository.GetAsync(id);
             test.IsAvtive = false;
             await _testRepository.UpdateAsync(test);
-           
+
             return RedirectToAction("ViewTests", "EditTest");
         }
 

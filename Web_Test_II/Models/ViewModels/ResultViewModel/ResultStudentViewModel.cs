@@ -5,6 +5,7 @@ namespace Web_Test_II.Models.ViewModels.ResultViewModel
     public class ResultStudentViewModel
     {
         public IQueryable<Result> Results { get; set; }
+        public int QuestionsTest { get; set; }
 
 
         public ResultStudentViewModel() { }

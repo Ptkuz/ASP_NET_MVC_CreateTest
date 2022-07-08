@@ -58,7 +58,7 @@ namespace Web_Test_II.Controllers
 
             var questions = await _questionRepository.GetQuestionsInTest(id);
             var questionsList = questions.ToList();
-            OpenTestViewModel model = new OpenTestViewModel(questionsList);
+            OpenTestViewModel model = new OpenTestViewModel(questionsList, id);
             return View(model);
         }
 

@@ -194,6 +194,8 @@ namespace Web_Test_II.Controllers
         public async Task<IActionResult> Logout()
         {
             User = null;
+            Mentor = null;
+            Student = null;
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }

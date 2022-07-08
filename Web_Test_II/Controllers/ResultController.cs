@@ -89,7 +89,6 @@ namespace Web_Test_II.Controllers
             result.Student = student;
             result.Test = test;
             result.Points = score;
-            result.TryCount = 1;
 
             await _resultRepository.AddAsync(result);
             var resultStudent = await _resultRepository.GetResultsStudentAsync(student.Id);

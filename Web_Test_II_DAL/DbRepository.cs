@@ -156,7 +156,7 @@ namespace Web_Test_II_DAL
 
         public async Task<IQueryable<T>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default) 
         {
-            var resultStudent = await Results.Include(item=>item.Test).Include(item=>item.Student).Where(item => item.Student.Id==idStudent).ToListAsync();
+            var resultStudent = await Results.Include(item=>item.Test.Questions).Include(item=>item.Student).Where(item => item.Student.Id==idStudent).ToListAsync();
             return (IQueryable<T>)resultStudent.AsQueryable();
         }
 

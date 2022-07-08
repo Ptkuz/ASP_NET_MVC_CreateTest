@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Web_Test_II.Models.ViewModels.DataOperationsViewModels;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
@@ -59,9 +60,9 @@ namespace Web_Test_II.Controllers
                 await _groupRepository.AddAsync(group);
                 return RedirectToAction("ViewGroups", "DataOperations");
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
-                return RedirectToAction("ViewGroups", "DataOperations");
+                return RedirectToAction("ViewPositions", "DataOperations");
             }
         }
 
@@ -113,7 +114,7 @@ namespace Web_Test_II.Controllers
                 await _groupRepository.RemoveAsync(id);
                 return RedirectToAction("ViewGroups", "DataOperations");
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
                 return RedirectToAction("ViewGroups", "DataOperations");
             }
@@ -128,7 +129,7 @@ namespace Web_Test_II.Controllers
                 await _positionRepository.RemoveAsync(id);
                 return RedirectToAction("ViewPositions", "DataOperations");
             }
-            catch (Exception ex)
+            catch (SqlException)
             {
                 ViewBag.ErrorMessage = "При удалении произошла ошибка, попробуйте еще раз";
                 return RedirectToAction("ViewPositions", "DataOperations");
