@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_Interfaces;
 using Web_Test_II.Models.ViewModels.ResultViewModel;
+using Web_Test_II_DAL.Models;
 
 namespace Web_Test_II.Controllers
 {
@@ -41,7 +42,7 @@ namespace Web_Test_II.Controllers
             ResultStudentViewModel model = null;
             if (resultStudent != null) 
             {
-                model = new ResultStudentViewModel(resultStudent);
+                model = new ResultStudentViewModel(resultStudent as IQueryable<GroupResultsStudents>);
                 return View(model);
             }
             else
@@ -92,7 +93,7 @@ namespace Web_Test_II.Controllers
 
             await _resultRepository.AddAsync(result);
             var resultStudent = await _resultRepository.GetResultsStudentAsync(student.Id);
-            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent);
+            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent as IQueryable<GroupResultsStudents>);
             return RedirectToAction("ViewResultsStudent", "Result");
         }
 

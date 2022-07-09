@@ -3,6 +3,7 @@ using Web_Test_II_DAL.Context;
 using Web_Test_II_DAL.Entityes;
 using Web_Test_II_DAL.Entityes.Base;
 using Web_Test_II_Interfaces;
+using Web_Test_II_DAL.Models;
 
 namespace Web_Test_II_DAL
 {
@@ -45,6 +46,7 @@ namespace Web_Test_II_DAL
         public virtual IQueryable<User> Users => users;
         public virtual IQueryable<Result> Results => results;
         public virtual IQueryable<Group> Groups => groups;
+        public IQueryable<GroupResultsStudents> GroupResultsStudents;
 
         public T Get(int id)
         {
@@ -154,11 +156,28 @@ namespace Web_Test_II_DAL
             return null;
         }
 
-        public async Task<IQueryable<T>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default) 
+        public async Task<IQueryable<object>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default) 
         {
-            var resultStudent = await Results.Include(item=>item.Test.Questions).Include(item=>item.Student).Where(item => item.Student.Id==idStudent).ToListAsync();
-            return (IQueryable<T>)resultStudent.AsQueryable();
+            var resultsStudent = await Results.Include(item=>item.Test.Questions).
+                Include(item=>item.Student).Where(item => item.Student.Id==idStudent).OrderByDescending(item=>item.Points).ToListAsync();
+
+            var groupResults = resultsStudent.GroupBy(item => item.Test.Name).Select(g => new { Name = g.Key, Count = g.Count()}).ToList();
+
+           List<GroupResultsStudents> resultsGroups = new List<GroupResultsStudents>();
+
+            foreach (var group in groupResults) 
+            {
+                var bestResult = resultsStudent.Where(item=>item.Test.Name==group.Name).
+                    Select(res => new GroupResultsStudents { IdTest = res.Test.Id, NameTest = res.Test.Name, CountQuestions = res.Test.Questions.Count, Points = res.Points, CountTrying = group.Count}).
+                    FirstOrDefault();
+                resultsGroups.Add(bestResult);
+
+
+            }
+            return resultsGroups.AsQueryable();
         }
+
+        
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
         {

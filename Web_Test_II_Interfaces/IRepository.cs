@@ -27,7 +27,7 @@ namespace Web_Test_II_Interfaces
         Task<T> GetUserAsync(string email, CancellationToken Cancel = default);
         Task<T> GetMentorOfUserAsync(int idUser, CancellationToken Cancel = default);
         Task<T> GetStudentOfUserAsync(int idUser, CancellationToken Cancel = default);
-        Task<IQueryable<T>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default);
+        Task<IQueryable<object>> GetResultsStudentAsync(int idStudent, CancellationToken Cancel = default);
         void DisposeContextAsync();
         Task SaveChangesAsync();
     }

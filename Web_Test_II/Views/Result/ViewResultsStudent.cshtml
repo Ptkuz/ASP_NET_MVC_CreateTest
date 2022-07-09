@@ -26,7 +26,11 @@
                 </th>
                 <th>
                     <a>Количество баллов</a>
-                </th> 
+                </th>
+                 <th>
+                    <a>Количество попыток</a>
+                </th>
+ 
             @if (@AccountController.User.RoleId==2)
             {
                 <th>
@@ -34,7 +38,7 @@
                 </th>  
             }
         </tr>
-            @foreach(var result in Model.Results)
+            @foreach(var groupResult in Model.GroupResultsStudents)
             {
             num++;
             <tr>
@@ -42,15 +46,18 @@
                      @num   
                     </td>
                     <td>                       
-                      @result.Test.Name 
+                      @groupResult.NameTest
                      </td>
                     <td>
-                      @result.Points/@result.Test.Questions.Count
+                      @groupResult.Points/@groupResult.CountQuestions
                     </td>
+                    <td>                       
+                      @groupResult.CountTrying
+                     </td>
                     @if (@AccountController.User.RoleId==2)
                     {
                         <td>
-                            <a asp-action="OpenTest" asp-controller="Testing" asp-route-id="@result.Test.Id">Пройти еще раз</a>
+                            <a asp-action="OpenTest" asp-controller="Testing" asp-route-id="@groupResult.IdTest">Пройти еще раз</a>
                         </td>  
                     }
                 </tr>           
