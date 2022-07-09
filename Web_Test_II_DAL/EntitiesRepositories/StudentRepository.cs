@@ -11,6 +11,6 @@ namespace Web_Test_II_DAL.EntitiesRepositories
         }
 
         public override IQueryable<Student> Items =>
-            base.Items.Include(item => item.Group).Include(item => item.Group);
+            base.Items.Include(item => item.User).Include(item => item.Group);
     }
 }

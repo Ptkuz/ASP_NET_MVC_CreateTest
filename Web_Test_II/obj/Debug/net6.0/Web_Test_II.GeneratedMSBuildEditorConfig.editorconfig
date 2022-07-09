@@ -35,8 +35,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld0dyb3Vwcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/DataOperations/ViewMentors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld01lbnRvcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/DataOperations/ViewPositions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld1Bvc2l0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/DataOperations/ViewStudents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld1N0dWRlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/AddAnswers.cshtml]
@@ -69,6 +77,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Home/ViewStudents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3U3R1ZGVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Result/ViewAllResults.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzdWx0XFZpZXdBbGxSZXN1bHRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/Result/ViewResultsStudent.cshtml]

@@ -3,14 +3,14 @@
 @using Web_Test_II.Controllers;
 @model ResultStudentViewModel
 @{
-    ViewBag.Title = "Просмотр результатов тестов конкретного студента";
+    ViewBag.Title = "Просмотр всех результатов";
     int num = 0;
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, Web_Test_II
 
 @{
-    ViewBag.Title = "Просмотр результатов тестов конкретного студента";
+    ViewBag.Title = "Просмотр всех результатов";
 }
 
 <div class="text-center">
@@ -22,17 +22,17 @@
                     <a>Номер</a>
                 </th>
                 <th>
+                    <a>Студент</a>
+                </th>
+                <th>
+                    <a>Группа</a>
+                </th>
+                <th>
                     <a>Тест</a>
                 </th>
                 <th>
                     <a>Количество баллов</a>
                 </th> 
-            @if (@AccountController.User.RoleId==2)
-            {
-                <th>
-                    <a>Пройти еще раз</a>
-                </th>  
-            }
         </tr>
             @foreach(var result in Model.Results)
             {
@@ -42,17 +42,17 @@
                      @num   
                     </td>
                     <td>                       
+                      @result.Student.Surname @result.Student.Name @result.Student.Patronymic 
+                     </td>
+                      <td>                       
+                      @result.Student.Group.Name
+                     </td>
+                    <td>                       
                       @result.Test.Name 
                      </td>
                     <td>
                       @result.Points/@result.Test.Questions.Count
                     </td>
-                    @if (@AccountController.User.RoleId==2)
-                    {
-                        <td>
-                            <a asp-action="OpenTest" asp-controller="Testing" asp-route-id="@result.Test.Id">Пройти еще раз</a>
-                        </td>  
-                    }
                 </tr>           
         }
         </table>

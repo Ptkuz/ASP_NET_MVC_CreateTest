@@ -13,6 +13,10 @@ namespace Web_Test_II.Controllers
 
         private readonly IRepository<Position> _positionRepository;
         private readonly IRepository<Group> _groupRepository;
+        private readonly IRepository<Mentor> _mentorRepository;
+        private readonly IRepository<Student> _studentRepository;
+        private readonly IRepository<User> _userRepository;
+
 
 
 
@@ -21,12 +25,36 @@ namespace Web_Test_II.Controllers
         public DataOperationsController(
             ILogger<CreateTestController> logger,
             IRepository<Position> positionRepository,
-            IRepository<Group> groupRepository)
+            IRepository<Group> groupRepository,
+            IRepository<Mentor> mentorRepository,
+            IRepository<Student> studentRepository,
+            IRepository<User> userRepository)
         {
             _logger = logger;
             _positionRepository = positionRepository;
             _groupRepository = groupRepository;
+            _mentorRepository = mentorRepository;
+            _studentRepository = studentRepository;
+            _userRepository = userRepository;
 
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin, mentor")]
+        public IActionResult ViewMentors()
+        {
+            var mentors = _mentorRepository.Items.ToList();
+            MentorsViewModel model = new MentorsViewModel(mentors);
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin, mentor")]
+        public IActionResult ViewStudents()
+        {
+            var students = _studentRepository.Items.ToList();
+            StudentsViewModel model = new StudentsViewModel(students);
+            return View(model);
         }
 
         [HttpGet]
@@ -133,6 +161,46 @@ namespace Web_Test_II.Controllers
             {
                 ViewBag.ErrorMessage = "При удалении произошла ошибка, попробуйте еще раз";
                 return RedirectToAction("ViewPositions", "DataOperations");
+            }
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteMentor(int id)
+        {
+            try
+            {
+                var mentor = await _mentorRepository.GetAsync(id);
+                var idUser = mentor.UserKey;
+                await _mentorRepository.RemoveAsync(id);
+                await _userRepository.RemoveAsync(idUser);
+                return RedirectToAction("ViewMentors", "DataOperations");
+            }
+            catch (SqlException)
+            {
+                ViewBag.ErrorMessage = "При удалении произошла ошибка, попробуйте еще раз";
+                return RedirectToAction("ViewMentors", "DataOperations");
+            }
+
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteStudent(int id)
+        {
+            try
+            {
+                var student = await _studentRepository.GetAsync(id);
+                var idUser = student.UserKey;
+                await _mentorRepository.RemoveAsync(id);
+                await _userRepository.RemoveAsync(idUser);
+                return RedirectToAction("ViewStudents", "DataOperations");
+            }
+            catch (SqlException)
+            {
+                ViewBag.ErrorMessage = "При удалении произошла ошибка, попробуйте еще раз";
+                return RedirectToAction("ViewStudents", "DataOperations");
             }
 
         }

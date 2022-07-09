@@ -50,7 +50,7 @@ namespace Web_Test_II.Controllers
 
         [HttpPost]
         [Authorize(Roles = "student")]
-        public async Task<IActionResult> ViewResultsStudent(IFormCollection keys, int id) 
+        public async Task<IActionResult> GetResults(IFormCollection keys, int id) 
         {
             int score = 0;
             string[] questionsId = keys["questionId"];
@@ -93,8 +93,17 @@ namespace Web_Test_II.Controllers
             await _resultRepository.AddAsync(result);
             var resultStudent = await _resultRepository.GetResultsStudentAsync(student.Id);
             ResultStudentViewModel model = new ResultStudentViewModel(resultStudent);
-            return View(model);
-
+            return RedirectToAction("ViewResultsStudent", "Result");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "mentor")]
+        public async Task<IActionResult> ViewAllResults()
+        {
+            var resultStudent = _resultRepository.Items;
+            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent);      
+                return View(model);
+        }
+
     }
 }
