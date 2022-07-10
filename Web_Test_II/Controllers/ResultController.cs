@@ -101,8 +101,8 @@ namespace Web_Test_II.Controllers
         [Authorize(Roles = "mentor")]
         public async Task<IActionResult> ViewAllResults()
         {
-            var resultStudent = _resultRepository.Items;
-            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent);      
+            var resultStudent = _resultRepository.GetAllResultstAsync();
+            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent as IQueryable<GroupResultsStudents>);      
                 return View(model);
         }
 

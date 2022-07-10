@@ -13,7 +13,7 @@
     ViewBag.Title = "Просмотр всех результатов";
 }
 
-<div class="text-center">
+@*<div class="text-center">
 
         <h2 class="display-4">Просмотр результатов теста</h2>  
         <table class="table">
@@ -33,30 +33,33 @@
                 <th>
                     <a>Количество баллов</a>
                 </th> 
+                 <th>
+                    <a>Количество попыток</a>
+                </th> 
         </tr>
-            @foreach(var result in Model.Results)
+            @foreach(var groupResult in Model.GroupResultsStudents)
             {
             num++;
             <tr>
-                   @* <td>
+                    <td>
                      @num   
                     </td>
                     <td>                       
-                      @result.Student.Surname @result.Student.Name @result.Student.Patronymic 
+                      @groupResult.SurnameStudent @groupResult.NameStudent @groupResult.Patronymic 
                      </td>
                       <td>                       
-                      @result.Student.Group.Name
+                      @groupResult.Group
                      </td>
                     <td>                       
-                      @result.Test.Name 
+                      @groupResult.NameTest
                      </td>
                     <td>
-                      @result.Points/@result.Test.Questions.Count
-                    </td>*@
+                      @groupResult.Points/@groupResult.CountQuestions
+                    </td>
                 </tr>           
         }
         </table>
         
 
     
-</div>
+</div>*@

@@ -177,7 +177,35 @@ namespace Web_Test_II_DAL
             return resultsGroups.AsQueryable();
         }
 
-        
+        public async Task<IQueryable<object>> GetAllResultstAsync(CancellationToken Cancel = default)
+        {
+            var allResults = await Results.Include(item => item.Test.Questions).
+                Include(item => item.Student).OrderByDescending(item => item.Points).ToListAsync();
+
+            var groupResults = allResults.GroupBy(item => item.Test.Name).Select(g => new { Name = g.Key, Count = g.Count() }).ToList();
+
+            List<GroupResultsStudents> resultsGroups = new List<GroupResultsStudents>();
+
+            foreach (var group in groupResults)
+            {
+                var bestResult = allResults.Where(item => item.Test.Name == group.Name).
+                    Select(res => new GroupResultsStudents 
+                    { 
+                        SurnameStudent = res.Student.Surname, 
+                        NameStudent = res.Student.Name, 
+                        Patronymic = res.Student.Group.Name, 
+                        IdTest = res.Test.Id, 
+                        NameTest = res.Test.Name, 
+                        CountQuestions = res.Test.Questions.Count, 
+                        Points = res.Points, 
+                        CountTrying = group.Count }).
+                    FirstOrDefault();
+                resultsGroups.Add(bestResult);
+
+
+            }
+            return resultsGroups.AsQueryable();
+        }
 
         public async Task<T> AddAsync(T item, CancellationToken Cancel = default)
         {
