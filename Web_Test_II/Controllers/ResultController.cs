@@ -34,10 +34,10 @@ namespace Web_Test_II.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "student")]
-        public async Task<IActionResult> ViewResultsStudent()
+        [Authorize(Roles = "student, mentor")]
+        public async Task<IActionResult> ViewResultsStudent(int id)
         {
-            var idStudent = AccountController.Student.Id;
+            var idStudent = AccountController.Student != null ? AccountController.Student.Id : id;
             var resultStudent = await _resultRepository.GetResultsStudentAsync(idStudent);
             ResultStudentViewModel model = null;
             if (resultStudent != null) 
@@ -97,14 +97,9 @@ namespace Web_Test_II.Controllers
             return RedirectToAction("ViewResultsStudent", "Result");
         }
 
-        [HttpGet]
-        [Authorize(Roles = "mentor")]
-        public async Task<IActionResult> ViewAllResults()
-        {
-            var resultStudent = _resultRepository.GetAllResultstAsync();
-            ResultStudentViewModel model = new ResultStudentViewModel(resultStudent as IQueryable<GroupResultsStudents>);      
-                return View(model);
-        }
+       
+
+        
 
     }
 }
