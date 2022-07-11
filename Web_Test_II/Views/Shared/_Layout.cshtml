@@ -41,7 +41,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="DataOperations" asp-action="ViewStudents">Просмотр студентов</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditProfileMenter">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditMentorProfile">
                                 @AccountController.Mentor.Surname @AccountController.Mentor.Name @AccountController.Mentor.Patronymic (@AccountController.Mentor.Position.Name)</a>
                             </li>
                         }
@@ -55,7 +55,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Result" asp-action="ViewResultsStudent">Результаты</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditProfileStudent">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EditProfile" asp-action="EditStudentProfile">
                                 @AccountController.Student.Surname @AccountController.Student.Name @AccountController.Student.Patronymic (@AccountController.Student.Group.Name)</a>
                             </li>
                         }                 

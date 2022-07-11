@@ -1,0 +1,68 @@
+﻿@using Web_Test_II.Models.ViewModels.EditProfile
+@model EditStudentProfileViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    ViewBag.Title = "Регистрация";
+
+
+}
+<div class="divlogin">
+     <h2 class="display-4">Редактирование информации профиля студента</h2>     
+@using(Html.BeginForm())
+{
+    <form asp-action="EditStudentProfile" asp-controller="EditProfile" method="post" asp-anti-forgery="true" class="modal">
+        <p>
+           <label asp-for="User.Email"></label><br/>
+           <input type="text" class="form-control" asp-for="User.Email"/>
+           <span asp-validation-for="User.Email"/>
+        </p>
+        <p>
+           <label asp-for="User.Password"></label><br/>
+           <input type="password" class="form-control" asp-for="User.Password"/>
+           <span asp-validation-for="User.Password"/>
+        </p>
+        <p>
+           <label asp-for="Student.Surname"></label><br/>
+           <input type="text" class="form-control" asp-for="Student.Surname"/>
+           <span asp-validation-for="Student.Surname"/>
+        </p>
+        <p>
+           <label asp-for="Student.Name"></label><br/>
+           <input type="text" class="form-control" asp-for="Student.Name"/>
+           <span asp-validation-for="Student.Name"/>
+        </p>
+        <p>
+           <label asp-for="Student.Patronymic"></label><br/>
+           <input type="text" class="form-control" asp-for="Student.Patronymic"/>
+           <span asp-validation-for="Student.Patronymic"/>
+        </p>
+        <p>
+          <label asp-for="Student.Group.Name"></label><br/>
+           <select name="groupId" class="form-control">
+               @foreach(var item in Model.Groups)
+                    {
+                        if (item.Id == Model.Student.Group.Id)
+                        {
+                            <option value="@item.Id" selected>@item.Name</option>
+                           
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+           
+        </p>
+        <p>
+            <input type="submit" value="Редактировать данные профиля" class="btn btn-outline-dark" />
+        </p>
+    </form>
+
+}
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>

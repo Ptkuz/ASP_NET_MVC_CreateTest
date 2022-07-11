@@ -47,6 +47,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGF0YU9wZXJhdGlvbnNcVmlld1N0dWRlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditProfile/EditMentorProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFByb2ZpbGVcRWRpdE1lbnRvclByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditProfile/EditStudentProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFByb2ZpbGVcRWRpdFN0dWRlbnRQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ptkuz/source/repos/Web_Test_II/Web_Test_II/Views/EditTest/AddAnswers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdFRlc3RcQWRkQW5zd2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
